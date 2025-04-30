@@ -41,7 +41,7 @@ export default function HoverPanel({ title, image, href, position }) {
         <h2
           className={clsx(
             "text-white text-3xl font-bold text-center p-4 transition-all duration-500",
-            isHovered ? "scale-110" : "scale-90 opacity-0 animate-scaleIn"
+            isHovered ? "scale-150" : "scale-90 opacity-50 animate-scaleIn"
           )}
         >
           {title}

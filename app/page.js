@@ -4,7 +4,7 @@ import Kemping from "@/components/Kemping";
 import Penziony from "@/components/Penziony";
 export default function Page() {
   return (
-    <main className="bg-gray-100 flex flex-col gap-24">
+    <main className="bg-gray-100 flex flex-col gap-24 md:gap-0">
       <Hero />
       <Penziony />
       <Glamping />

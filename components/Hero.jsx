@@ -6,19 +6,19 @@ export default function Hero() {
       <HoverPanel
         title="Web A"
         image="https://dummyimage.com/1000x1000/ddaa00/dcdcdc.png"
-        href="/web-a"
+        href="#glamping"
         position="left"
       />
       <HoverPanel
         title="Web B"
         image="https://dummyimage.com/1000x1000/aacc00/daa338.png"
-        href="/web-b"
+        href="#penziony"
         position="center"
       />
       <HoverPanel
         title="Web C"
         image="https://dummyimage.com/1000x1000/33cc00/d38463.png"
-        href="/web-c"
+        href="#kemping"
         position="right"
       />
     </main>
