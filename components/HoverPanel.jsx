@@ -8,9 +8,9 @@ export default function HoverPanel({ title, image, href, position }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const clipPaths = {
-    left: "inset(0 1% 0 0)",
-    center: "inset(0 1% 0 1%)",
-    right: "inset(0 0 0 1%)",
+    left: "inset(0 0.2% 0 0)",
+    center: "inset(0 0.2% 0 0.2%)",
+    right: "inset(0 0 0 0.2%)",
   };
 
   const basisClasses = {
