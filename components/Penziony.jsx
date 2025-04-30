@@ -16,12 +16,12 @@ export default function Penziony() {
           </p>
         </div>
         {/* text - end */}
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
           {penzionyData.map((penzion) => (
             <div
               key={penzion.name}
               className={`${
-                penzion.colSpan === "col-span-2" ? "col-span-2" : ""
+                penzion.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
               <a

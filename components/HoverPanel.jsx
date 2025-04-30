@@ -8,9 +8,9 @@ export default function HoverPanel({ title, image, href, position }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const clipPaths = {
-    left: "inset(0 0.2% 0 0)",
+    left: "inset(0 0.2% 0 0.2%)",
     center: "inset(0 0.2% 0 0.2%)",
-    right: "inset(0 0 0 0.2%)",
+    right: "inset(0 0.2% 0 0.2%)",
   };
 
   const basisClasses = {
@@ -36,12 +36,12 @@ export default function HoverPanel({ title, image, href, position }) {
     >
       <Link
         href={href}
-        className="w-full h-full flex items-center justify-center bg-black/30 hover:bg-black/50 transition-colors"
+        className="w-full h-full flex items-center justify-center bg-black/10 hover:bg-black/50 transition-colors"
       >
         <h2
           className={clsx(
             "text-white text-3xl font-bold text-center p-4 transition-all duration-500",
-            isHovered ? "scale-150" : "scale-90 opacity-50 animate-scaleIn"
+            isHovered ? "scale-150" : "scale-70 opacity-0 animate-scaleIn"
           )}
         >
           {title}
