@@ -2,7 +2,10 @@ import React from "react";
 import { penzionyData } from "./PenzionyData";
 export default function Penziony() {
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 min-h-screen" id="penziony">
+    <div
+      className="bg-white py-6 sm:py-8 lg:py-12 my-8 md:my-24 2xl:my-44"
+      id="penziony"
+    >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         {/* text - start */}
         <div className="mb-10 md:mb-16">

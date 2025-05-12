@@ -1,9 +1,10 @@
 export const glampingData = [
   {
-    name: "Harasov",
-    image: "https://dummyimage.com/1000x1000/22aa00/dcdcdc.png",
+    name: "Malběnka",
+    image:
+      "https://malba-pracovni.netlify.app/_next/image?url=%2Fimages%2Fmalbenka%2Fm3.webp&w=640&q=75",
     href: "https://harasov.eu",
-    description: "Penziony Harasov",
+    description: "orlí hnízdo",
   },
   {
     name: "Harasov",

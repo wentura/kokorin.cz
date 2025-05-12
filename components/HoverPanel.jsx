@@ -8,9 +8,9 @@ export default function HoverPanel({ title, image, href, position }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const clipPaths = {
-    left: "inset(0 0.2% 0 0.2%)",
-    center: "inset(0 0.2% 0 0.2%)",
-    right: "inset(0 0.2% 0 0.2%)",
+    left: "inset(0 0 0 0)",
+    center: "inset(0 0 0 0)",
+    right: "inset(0 0 0 0)",
   };
 
   const basisClasses = {
@@ -23,7 +23,7 @@ export default function HoverPanel({ title, image, href, position }) {
     <div
       className={clsx(
         "relative transition-all duration-500 ease-in-out bg-cover bg-center opacity-100 animate-fadeIn",
-        "h-[33.33vh] md:h-full",
+        "h-[33vh] md:h-full",
         "w-full md:hover:grow",
         basisClasses[position]
       )}
@@ -40,8 +40,8 @@ export default function HoverPanel({ title, image, href, position }) {
       >
         <h2
           className={clsx(
-            "text-white text-3xl font-bold text-center p-4 transition-all duration-500",
-            isHovered ? "scale-150" : "scale-70 opacity-0 animate-scaleIn"
+            "text-white text-3xl font-bold text-center p-4 transition-all duration-500 ",
+            isHovered ? "scale-150" : "md:scale-70 md:opacity-0 animate-scaleIn"
           )}
         >
           {title}
