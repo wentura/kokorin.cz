@@ -9,12 +9,15 @@ import Penziony from "@/components/Penziony";
 export default function Page() {
   return (
     <main className="">
-      <Header />
+      {/* <Header /> */}
       <div className="flex flex-col max-w-screen-2xl mx-auto my-16 gap-3 px-4">
         <h1 className="text-4xl font-extrabold text-left -mb-3">Kokořínsko</h1>
-        <h2 className="text-2xl text-left mb-8">
+        <h2 className="text-2xl text-left">
           kraj pískovcových skal, hlubokých lesů a romantických hradů
         </h2>
+      </div>
+      <Hero />
+      <div className="flex flex-col max-w-screen-2xl mx-auto my-16 gap-3 px-4">
         <p className="text-gray-800 text-lg">
           <span className="font-bold">Kokořínsko</span> láká návštěvníky
           unikátními pískovcovými útvary a skalními městy, které patří k
@@ -34,7 +37,6 @@ export default function Page() {
           relaxace v přírodě dělají z Kokořínska ideální místo pro dovolenou.
         </p>
       </div>
-      <Hero />
       <Penziony />
       <Glamping />
       <Kemping />
