@@ -1,7 +1,9 @@
+import Footer from "@/components/Footer";
 import Glamping from "@/components/Glamping";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Kemping from "@/components/Kemping";
+import Matomo from "@/components/Matomo";
 import Penziony from "@/components/Penziony";
 export default function Page() {
   return (
@@ -35,6 +37,8 @@ export default function Page() {
       <Penziony />
       <Glamping />
       <Kemping />
+      <Footer />
+      <Matomo />
     </main>
   );
 }
