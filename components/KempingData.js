@@ -1,7 +1,8 @@
 export const kempingData = [
   {
     name: "Harasov",
-    image: "https://dummyimage.com/1000x1000/aaaa00/dcdcdc.png",
+    image:
+      "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
     href: "https://www.harasov.eu/#kemp",
     description: "moderní kemp",
   },

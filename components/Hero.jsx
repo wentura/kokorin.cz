@@ -5,7 +5,7 @@ export default function Hero() {
     <main className="h-[50vh] min-h-[200px] md:min-h-[400px] w-full flex flex-col md:flex-row overflow-hidden">
       <HoverPanel
         title="Glamping a tiny house"
-        image="https://dummyimage.com/1000x1000/ddaa00/dcdcdc.png"
+        image="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262134/Kamil/vW45A8151.webp"
         href="#glamping"
         position="left"
       />
@@ -17,7 +17,7 @@ export default function Hero() {
       />
       <HoverPanel
         title="Kempy a tábořiště"
-        image="https://dummyimage.com/1000x1000/33cc00/d38463.png"
+        image="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262135/Kamil/W45A8080.webp"
         href="#kemping"
         position="right"
       />

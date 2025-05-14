@@ -15,7 +15,8 @@ export const penzionyData = [
   },
   {
     name: "penzion Milča",
-    image: "https://dummyimage.com/1000x1000/66aa00/dcdcdc.png",
+    image:
+      "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262138/Kamil/W45A8125.webp",
     href: "http://penzionmilca.cz/",
     description: "na lesním paloučku",
   },

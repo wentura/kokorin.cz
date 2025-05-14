@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import FooterLinks from "@/components/FooterLinks";
 import Glamping from "@/components/Glamping";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -7,7 +8,7 @@ import Matomo from "@/components/Matomo";
 import Penziony from "@/components/Penziony";
 export default function Page() {
   return (
-    <main className="bg-gray-100">
+    <main className="">
       <Header />
       <div className="flex flex-col max-w-screen-2xl mx-auto my-16 gap-3 px-4">
         <h1 className="text-4xl font-extrabold text-left -mb-3">Kokořínsko</h1>
@@ -37,6 +38,7 @@ export default function Page() {
       <Penziony />
       <Glamping />
       <Kemping />
+      <FooterLinks />
       <Footer />
       <Matomo />
     </main>
