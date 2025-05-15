@@ -12,10 +12,10 @@ export default function Glamping() {
           <h2 className="mb-4 text-center text-xl md:text-3xl xl:text-5xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
             Glamping a tiny house
           </h2>
-          <p className="mx-auto text-center text-gray-500 md:text-lg">
+          {/* <p className="mx-auto text-center text-gray-500 md:text-lg">
             Na Kokořínsku najdete mnoho glampingů a tiny house, které vám
             poskytnou příjemné ubytování a výbornou gastronomii.
-          </p>
+          </p> */}
         </div>
         {/* text - end */}
         <div className="grid gap-6 sm:grid-cols-2">

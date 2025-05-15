@@ -12,9 +12,9 @@ export default function Kemping() {
           <h2 className="mb-4 text-center text-xl md:text-3xl xl:text-5xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
             Kempy a tábořiště
           </h2>
-          <p className="mx-auto text-center text-gray-500 md:text-lg">
+          {/* <p className="mx-auto text-center text-gray-500 md:text-lg">
             Tato stránka obsahuje informace o kempech v Kokořínsku.
-          </p>
+          </p> */}
         </div>
         {/* text - end */}
         <div className="grid gap-6 sm:grid-cols-2">
