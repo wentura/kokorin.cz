@@ -5,8 +5,12 @@ export default function Footer() {
     <footer className="py-4">
       <div className="max-w-screen-2xl mx-auto px-4">
         <p className="text-center text-gray-500">
-          provozovatel: Kokosport s.r.o. &copy; {new Date().getFullYear()},{" "}
-          <br className="block md:hidden" />
+          provozovatel: Kokosport s.r.o.
+          <br />
+          Kokořínský Důl 41, 277 23 Kokořín
+          <br />
+          IČO: 03662993 &copy; {new Date().getFullYear()}
+          <br />
           <a
             href="https://www.zbyneksvoboda.cz"
             className="underline text-xs underline-offset-4"
