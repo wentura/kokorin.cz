@@ -5,10 +5,11 @@ export default function Footer() {
     <footer className="py-4">
       <div className="max-w-screen-2xl mx-auto px-4">
         <p className="text-center text-gray-500">
-          &copy; {new Date().getFullYear()},{" "}
+          provozovatel: Kokosport s.r.o. &copy; {new Date().getFullYear()},{" "}
+          <br className="block md:hidden" />
           <a
             href="https://www.zbyneksvoboda.cz"
-            className="underline text-sm underline-offset-4"
+            className="underline text-xs underline-offset-4"
             title="web Zbyněk Svoboda"
             target="_blank"
             rel="noopener noreferrer"
