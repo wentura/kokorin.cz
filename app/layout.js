@@ -1,6 +1,6 @@
+import CookieConsent from "@/components/CookieConsent";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 // export const metadata = {
 //   title: "Kokořínsko",
 //   description:
@@ -53,6 +53,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>{children}</body>
+      <CookieConsent />
     </html>
   );
 }
