@@ -1,5 +1,6 @@
 "use client";
 
+import { cs } from "date-fns/locale";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -134,7 +135,12 @@ export default function BookingForm({ onSuccess }) {
             endDate={dateTo}
             minDate={new Date()}
             className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            dateFormat="dd/MM/yyyy"
+            dateFormat="dd.MM.yyyy"
+            locale={cs}
+            calendarStartDay={1}
+            placeholderText="Vyberte datum příjezdu"
+            showPopperArrow={false}
+            isClearable
           />
           {errors.dateFrom && (
             <p className="mt-1 text-sm text-red-600">
@@ -158,7 +164,12 @@ export default function BookingForm({ onSuccess }) {
             endDate={dateTo}
             minDate={dateFrom}
             className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            dateFormat="dd/MM/yyyy"
+            dateFormat="dd.MM.yyyy"
+            locale={cs}
+            calendarStartDay={1}
+            placeholderText="Vyberte datum odjezdu"
+            showPopperArrow={false}
+            isClearable
           />
           {errors.dateTo && (
             <p className="mt-1 text-sm text-red-600">{errors.dateTo.message}</p>
@@ -218,7 +229,7 @@ export default function BookingForm({ onSuccess }) {
       <div>
         <label
           htmlFor="accommodation"
-          className="block text-sm font-base text-gray-700"
+          className="hidden md:block text-sm font-base text-gray-700"
         >
           Preferovaný typ ubytování
         </label>
@@ -243,10 +254,26 @@ export default function BookingForm({ onSuccess }) {
         )}
       </div>
 
+      <div>
+        <label
+          htmlFor="notes"
+          className="hidden md:block text-sm font-base text-gray-700"
+        >
+          Poznámka k rezervaci
+        </label>
+        <textarea
+          id="notes"
+          rows="3"
+          placeholder="Poznámky k vaší rezervaci..."
+          {...register("notes")}
+          className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        />
+      </div>
+
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-xl uppercase font-bold tracking-tight text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-50-500 disabled:opacity-50"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm md:text-xl uppercase font-bold tracking-tight text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-50-500 disabled:opacity-50"
       >
         {isSubmitting ? "Odesílání..." : "Odeslat rezervaci"}
       </button>

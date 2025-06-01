@@ -29,6 +29,14 @@ export async function POST(request) {
             <p><strong>Předpokládaná ubytování:</strong> ${
               data.accommodation
             }</p>
+            ${
+              data.notes
+                ? `
+            <p><strong>Poznámka k rezervaci:</strong></p>
+            <p style="white-space: pre-wrap; background-color: #f9fafb; padding: 10px; border-radius: 4px;">${data.notes}</p>
+            `
+                : ""
+            }
           `
               : `
             <p>Dobrý den ${data.name},</p>
