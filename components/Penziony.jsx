@@ -22,27 +22,46 @@ export default function Penziony() {
           {penzionyData.map((penzion) => (
             <div
               key={penzion.name}
-              className={`${
+              className={` ${
                 penzion.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
               <a
                 href={penzion.href}
-                className="group relative flex h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg"
+                className="flex flex-col min-h-80 rounded-lg shadow-lg border-1 border-gray-200"
               >
-                <img
-                  src={penzion.image}
-                  loading="lazy"
-                  alt={penzion.name}
-                  className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
-                <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
-                  <span className="text-gray-300 text-lg lg:text-xl">
-                    {penzion.description}
+                <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-200">
+                  <img
+                    src={penzion.image}
+                    loading="lazy"
+                    alt={penzion.name}
+                    className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
+                  <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                    {/* <span className="text-gray-300 text-lg lg:text-xl">
+                      {penzion.description}
+                    </span> */}
+                    <span className="text-xl font-semibold text-white lg:text-4xl">
+                      {penzion.name}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 p-4 text-xl">
+                  {penzion?.kpi?.map((kpi, index) => (
+                    <span key={index} className="text-gray-500">
+                      {kpi}
+                    </span>
+                  ))}
+                </div>
+                {penzion.longDesc && (
+                  <span className="text-gray-500 text-sm p-4">
+                    {penzion.longDesc}
                   </span>
-                  <span className="text-xl font-semibold text-white lg:text-4xl">
-                    {penzion.name}
+                )}
+                <div className="mb-4 flex justify-end mr-4">
+                  <span className="text-white text-center text-sm uppercase font-bold p-2 bg-teal-600 rounded-md tracking-tight">
+                    navštívit {penzion.name}
                   </span>
                 </div>
               </a>
