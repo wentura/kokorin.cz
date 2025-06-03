@@ -12,11 +12,13 @@ import Kemping from "@/components/Kemping";
 import Matomo from "@/components/Matomo";
 import Penziony from "@/components/Penziony";
 import StickyBookingButton from "@/components/StickyBookingButton";
+import Stripe from "@/components/Stripe";
 import Link from "next/link";
 
 export default function Page() {
   return (
     <main className="">
+      <Stripe text="nově poptávkový formulář" />
       {/* <Header /> */}
       {/* <HoverPanel
         className="w-full h-80"
