@@ -7,8 +7,8 @@ export const penzionyData = [
     colSpan: "col-span-2",
     kpi: [
       "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
+      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu.",
+      "Snídaně, možnost polopenze.",
     ],
     longDesc: "",
   },
@@ -18,11 +18,7 @@ export const penzionyData = [
       "https://malba-pracovni.netlify.app/_next/image?url=%2Fimages%2Fmalba%2Fml.webp&w=828&q=75",
     href: "https://www.penzionmalba.cz/",
     description: "v srdci Kokořínska",
-    kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
-    ],
+    kpi: ["Útulné ubytování v srdci Kokořínska."],
     longDesc: "",
   },
   {
@@ -32,9 +28,7 @@ export const penzionyData = [
     href: "https://www.penzionmilca.cz/",
     description: "na lesním paloučku",
     kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
+      "Penzion Milča je stylová lesní vila s chatou Milčinka na samotě uprostřed lesa v srdci Kokořínska.",
     ],
     longDesc: "",
   },

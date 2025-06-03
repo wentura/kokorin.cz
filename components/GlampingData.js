@@ -6,9 +6,7 @@ export const glampingData = [
     href: "https://www.malbenka.cz",
     description: "tiny house na skále",
     kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
+      "Postavená ve stylu trampské osady Harakoko na skále nad penzionem Malba připomíná Orlí hnízdo a nabízí dechberoucí výhledy na okolní krajinu včetně hradu Kokořín",
     ],
     longDesc: "",
   },
@@ -19,9 +17,7 @@ export const glampingData = [
     href: "https://www.milcinka.cz",
     description: "glamping na paloučku",
     kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
+      "Domeček, kde voní les a čas běží pomalu. Stačí otevřít dveře a jste v pohádce.",
     ],
     longDesc: "",
   },

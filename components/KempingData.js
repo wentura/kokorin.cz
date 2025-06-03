@@ -6,8 +6,9 @@ export const kempingData = [
     href: "https://www.kempharasov.cz",
     description: "moderní kemp",
     kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
+      "Na břehu rybníka Harasov – součástí Letoviska Harasov",
+      "Plně vybavený kemp evropského standardu",
+      "Půjčovna paddleboardů, mtb a elektrokol přímo v kempu",
       "Snídaně, možnost polopenze",
     ],
     longDesc: "",
@@ -18,9 +19,7 @@ export const kempingData = [
     href: "https://www.taboristeusplavku.cz/",
     description: "malebné tábořiště",
     kpi: [
-      "Přímo na břehu rybníka Harasov – ideální pro koupání a relaxaci.",
-      "Půjčovna paddleboardů, mtb a elektrokol přímo v penzionu",
-      "Snídaně, možnost polopenze",
+      "V krásném prostředí CHKO Kokořínska u rybníka Hlučov na říčce Pšovce, nedaleko hradu Kokořín, skalního útvaru Pokličky a Nedamských jeskyní.",
     ],
     longDesc: "",
   },
