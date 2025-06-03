@@ -7,14 +7,14 @@ export async function POST(request) {
     const { to, subject, data } = await request.json();
 
     const { data: emailData, error } = await resend.emails.send({
-      from: "Kokořín.cz <booking@kokorin.cz>",
+      from: "Kokořín.cz <info@kokorin.cz>",
       to: [to],
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2>Nová poptávka na Kokořín.cz</h2>
           ${
-            subject === "Nová poptávka ubytování na Kokořín.cz"
+            subject === "Nová poptávka ubytování z Kokořín.cz"
               ? `
             <p><strong>Poptávka ubytování:</strong> ${data.accommodation}</p>
             <br />

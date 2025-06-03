@@ -9,6 +9,7 @@ export const glampingData = [
       "Postavená ve stylu trampské osady Harakoko na skále nad penzionem Malba připomíná Orlí hnízdo a nabízí dechberoucí výhledy na okolní krajinu včetně hradu Kokořín",
     ],
     longDesc: "",
+    contact: "malbenka@kokorin.cz",
   },
   {
     name: "Milčinka",
@@ -20,5 +21,6 @@ export const glampingData = [
       "Domeček, kde voní les a čas běží pomalu. Stačí otevřít dveře a jste v pohádce.",
     ],
     longDesc: "",
+    contact: "milcinka@kokorin.cz",
   },
 ];

@@ -11,6 +11,8 @@ export const penzionyData = [
       "Snídaně, možnost polopenze.",
     ],
     longDesc: "",
+    contact: "info@harasov.eu",
+    // contact: "svoboda.zbynek@gmail.com",
   },
   {
     name: "penzion Malba",
@@ -20,6 +22,7 @@ export const penzionyData = [
     description: "v srdci Kokořínska",
     kpi: ["Útulné ubytování v srdci Kokořínska."],
     longDesc: "",
+    contact: "malba@kokorin.cz",
   },
   {
     name: "penzion Milča",
@@ -31,5 +34,6 @@ export const penzionyData = [
       "Penzion Milča je stylová lesní vila s chatou Milčinka na samotě uprostřed lesa v srdci Kokořínska.",
     ],
     longDesc: "",
+    contact: "milca@kokorin.cz",
   },
 ];

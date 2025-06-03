@@ -60,7 +60,10 @@ export default function Glamping() {
                 >
                   navštívit {glamping.name}
                 </a>
-                <BookingButton accommodation={glamping.name} />
+                <BookingButton
+                  accommodation={glamping.name}
+                  contact={glamping.contact}
+                />
               </div>
             </div>
           ))}

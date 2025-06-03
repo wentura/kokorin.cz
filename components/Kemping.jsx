@@ -59,7 +59,12 @@ export default function Kemping() {
                 >
                   navštívit {kemping.name}
                 </a>
-                <BookingButton accommodation={kemping.name} />
+                {!kemping.hiddenBooking && (
+                  <BookingButton
+                    accommodation={kemping.name}
+                    contact={kemping.contact}
+                  />
+                )}
               </div>
             </div>
           ))}

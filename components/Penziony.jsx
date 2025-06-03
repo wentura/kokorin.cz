@@ -63,8 +63,12 @@ export default function Penziony() {
                 >
                   navštívit {penzion.name}
                 </a>
-                <BookingButton accommodation={penzion.name} />
+                <BookingButton
+                  accommodation={penzion.name}
+                  contact={penzion.contact}
+                />
               </div>
+              {/* {penzion.contact} */}
             </div>
           ))}
         </div>

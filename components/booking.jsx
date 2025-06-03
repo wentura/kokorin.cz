@@ -13,7 +13,7 @@ const accommodationTypes = [
   { value: "kemping", label: "Kemping" },
 ];
 
-export default function BookingForm({ onSuccess, accommodation }) {
+export default function BookingForm({ onSuccess, accommodation, contact }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
@@ -36,8 +36,9 @@ export default function BookingForm({ onSuccess, accommodation }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "svoboda.zbynek@gmail.com",
-          subject: "Nová poptávka ubytování na Kokořín.cz",
+          //   to: "svoboda.zbynek@gmail.com",
+          to: contact,
+          subject: "Nová poptávka ubytování z Kokořín.cz",
           data: {
             ...data,
             accommodation: accommodation,

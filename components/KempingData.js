@@ -12,6 +12,8 @@ export const kempingData = [
       "Snídaně, možnost polopenze",
     ],
     longDesc: "",
+    hiddenBooking: true,
+    contact: "info@harasov.eu",
   },
   {
     name: "tábořiště U splávku",
@@ -22,5 +24,7 @@ export const kempingData = [
       "V krásném prostředí CHKO Kokořínska u rybníka Hlučov na říčce Pšovce, nedaleko hradu Kokořín, skalního útvaru Pokličky a Nedamských jeskyní.",
     ],
     longDesc: "",
+    hiddenBooking: true,
+    contact: "taboriste@kokorin.cz",
   },
 ];

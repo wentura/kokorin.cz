@@ -3,7 +3,7 @@
 import { useState } from "react";
 import BookingModal from "./BookingModal";
 
-export default function BookingButton({ accommodation }) {
+export default function BookingButton({ accommodation, contact }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,6 +18,7 @@ export default function BookingButton({ accommodation }) {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         accommodation={accommodation}
+        contact={contact}
       />
     </div>
   );
