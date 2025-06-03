@@ -13,7 +13,7 @@ const accommodationTypes = [
   { value: "kemping", label: "Kemping" },
 ];
 
-export default function BookingForm({ onSuccess }) {
+export default function BookingForm({ onSuccess, accommodation }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
@@ -37,8 +37,11 @@ export default function BookingForm({ onSuccess }) {
         },
         body: JSON.stringify({
           to: "svoboda.zbynek@gmail.com",
-          subject: "Nová rezervace na Kokořín.cz",
-          data: data,
+          subject: "Nová poptávka ubytování na Kokořín.cz",
+          data: {
+            ...data,
+            accommodation: accommodation,
+          },
         }),
       });
 
@@ -50,17 +53,17 @@ export default function BookingForm({ onSuccess }) {
         },
         body: JSON.stringify({
           to: data.email,
-          subject: "Vaše rezervace na Kokořín.cz",
+          subject: "Vaše poptávka ubytování na Kokořín.cz",
           data: {
             name: data.name,
             message:
-              "Děkujeme za vaši rezervaci.<br />Budeme vás kontaktovat co nejdříve.<br /><br /><br />S pozdravem, tým Kokořín.cz",
+              "Děkujeme za vaši poptávku ubytování na Kokořín.cz.<br />Budeme vás kontaktovat co nejdříve.<br /><br /><br />S pozdravem, tým Kokořín.cz",
           },
         }),
       });
 
       if (adminResponse.ok && userResponse.ok) {
-        toast.success("Rezervace byla úspěšně odeslána!");
+        toast.success("Poptávka byla úspěšně odeslána!");
         if (onSuccess) {
           onSuccess();
         }
@@ -68,7 +71,9 @@ export default function BookingForm({ onSuccess }) {
         throw new Error("Failed to send emails");
       }
     } catch (error) {
-      toast.error("Nepodařilo se odeslat rezervaci. Prosím zkuste to znovu.");
+      toast.error(
+        "Nepodařilo se odeslat poptávku. Prosím zkuste to znovu a nebo nám napište na info@kokorin.cz",
+      );
       console.error("Error:", error);
     } finally {
       setIsSubmitting(false);
@@ -205,17 +210,14 @@ export default function BookingForm({ onSuccess }) {
             htmlFor="infants"
             className="block text-sm font-base text-gray-700"
           >
-            Počet dětí (0-15 let)
+            Počet dětí (3-10 let)
           </label>
           <input
             type="number"
             placeholder="0"
             id="infants"
             min="0"
-            {...register("infants", {
-              required: "Počet dětí je povinný",
-              min: { value: 0, message: "Minimálně 0 dětí" },
-            })}
+            {...register("infants")}
             className="mt-1 p-2 block w-full md:w-26 rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           />
           {errors.infants && (
@@ -228,38 +230,10 @@ export default function BookingForm({ onSuccess }) {
 
       <div>
         <label
-          htmlFor="accommodation"
-          className="hidden md:block text-sm font-base text-gray-700"
-        >
-          Preferovaný typ ubytování
-        </label>
-        <select
-          id="accommodation"
-          {...register("accommodation", {
-            required: "Typ ubytování je povinný",
-          })}
-          className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        >
-          <option value="">Vyberte typ ubytování</option>
-          {accommodationTypes.map((type) => (
-            <option key={type.value} value={type.value}>
-              {type.label}
-            </option>
-          ))}
-        </select>
-        {errors.accommodation && (
-          <p className="mt-1 text-sm text-red-600">
-            {errors.accommodation.message}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label
           htmlFor="notes"
           className="hidden md:block text-sm font-base text-gray-700"
         >
-          Poznámka k rezervaci
+          Poznámka k poptávce
         </label>
         <textarea
           id="notes"
@@ -275,7 +249,7 @@ export default function BookingForm({ onSuccess }) {
         disabled={isSubmitting}
         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm md:text-xl uppercase font-bold tracking-tight text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-50-500 disabled:opacity-50"
       >
-        {isSubmitting ? "Odesílání..." : "Odeslat rezervaci"}
+        {isSubmitting ? "Odesílání..." : "Odeslat poptávku"}
       </button>
     </form>
   );

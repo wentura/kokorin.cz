@@ -12,27 +12,23 @@ export async function POST(request) {
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2>Nová rezervace na Kokořín.cz</h2>
+          <h2>Nová poptávka na Kokořín.cz</h2>
           ${
-            subject === "Nová rezervace na Kokořín.cz"
+            subject === "Nová poptávka ubytování na Kokořín.cz"
               ? `
+            <p><strong>Poptávka ubytování:</strong> ${data.accommodation}</p>
+            <br />
             <p><strong>Jméno:</strong> ${data.name}</p>
             <p><strong>E-mail:</strong> ${data.email}</p>
-            <p><strong>Od:</strong> ${new Date(
-              data.dateFrom,
-            ).toLocaleDateString()}</p>
-            <p><strong>Do:</strong> ${new Date(
-              data.dateTo,
-            ).toLocaleDateString()}</p>
+            <p><strong>Od:</strong> ${new Date(data.dateFrom).toLocaleDateString()}</p>
+            <p><strong>Do:</strong> ${new Date(data.dateTo).toLocaleDateString()}</p>
             <p><strong>Počet dospělých:</strong> ${data.adults}</p>
-            <p><strong>Počet dětí (0-15 let):</strong> ${data.infants}</p>
-            <p><strong>Předpokládaná ubytování:</strong> ${
-              data.accommodation
-            }</p>
+            <p><strong>Počet dětí (3-10 let):</strong> ${data.infants}</p>
+            
             ${
               data.notes
                 ? `
-            <p><strong>Poznámka k rezervaci:</strong></p>
+            <p><strong>Poznámka k poptávce:</strong></p>
             <p style="white-space: pre-wrap; background-color: #f9fafb; padding: 10px; border-radius: 4px;">${data.notes}</p>
             `
                 : ""

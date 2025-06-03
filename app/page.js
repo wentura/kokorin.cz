@@ -1,8 +1,13 @@
+// "use client";
+// import { motion } from "framer-motion";
+
+import BookingButton from "@/components/BookingButton";
 import Footer from "@/components/Footer";
 import FooterLinks from "@/components/FooterLinks";
 import Glamping from "@/components/Glamping";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import HoverPanel from "@/components/HoverPanel";
 import Kemping from "@/components/Kemping";
 import Matomo from "@/components/Matomo";
 import Penziony from "@/components/Penziony";
@@ -13,6 +18,63 @@ export default function Page() {
   return (
     <main className="">
       {/* <Header /> */}
+      {/* <HoverPanel
+        className="w-full h-80"
+        title="Kokořínsko"
+        image="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp"
+        href="https://www.kempharasov.cz"
+        position="left"
+      />
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        drag
+        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      >
+        Draggable Content
+      </motion.div> */}
+      {/* <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        Content
+      </motion.div>
+      <motion.div
+        animate={{ x: 100 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+      >
+        Springy Content
+      </motion.div>
+      <motion.div
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Keyframe Content
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        Content that animates on scroll
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+      >
+        Content that animates on scroll
+      </motion.div> */}
+
       <div className="flex flex-col max-w-screen-2xl mx-auto my-10 md:my-16 gap-3 px-4">
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="w-full flex flex-col gap-4">
@@ -23,13 +85,13 @@ export default function Page() {
               kraj pískovcových skal, hlubokých lesů a romantických hradů
             </h2>
           </div>
-          <div className="w-full flex justify-center md:justify-end mt-4 md:mt-0">
-            <Link
+          <div className="w-full flex justify-center md:justify-end mt-0">
+            {/* <Link
               href="/booking"
               className="text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 px-4 py-2 rounded-md shadow-sm text-sm md:text-base 2xl:text-lg font-bold uppercase tracking-tight"
             >
-              Rezervace ubytování
-            </Link>
+              Poptávka ubytování
+            </Link>*/}
           </div>
         </div>
       </div>
@@ -53,7 +115,7 @@ export default function Page() {
           Panoramatické výhledy, možnost koupání a relaxace v přírodě dělají z a
           relaxace v přírodě dělají z Kokořínska ideální místo pro dovolenou.
         </p>
-        <StickyBookingButton />
+        {/* <StickyBookingButton accommodation="Malba" /> */}
       </div>
       <Penziony />
       <Glamping />

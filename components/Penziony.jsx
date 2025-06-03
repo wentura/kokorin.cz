@@ -1,4 +1,5 @@
 import React from "react";
+import BookingButton from "./BookingButton";
 import { penzionyData } from "./PenzionyData";
 export default function Penziony() {
   return (
@@ -22,49 +23,48 @@ export default function Penziony() {
           {penzionyData.map((penzion) => (
             <div
               key={penzion.name}
-              className={` ${
+              className={`border-1 border-gray-100 rounded-lg shadow-lg ${
                 penzion.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
-              <a
-                href={penzion.href}
-                className="flex flex-col min-h-80 rounded-lg shadow-lg border-1 border-gray-200"
-              >
-                <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-200">
-                  <img
-                    src={penzion.image}
-                    loading="lazy"
-                    alt={penzion.name}
-                    className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
-                  <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
-                    {/* <span className="text-gray-300 text-lg lg:text-xl">
+              <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-100">
+                <img
+                  src={penzion.image}
+                  loading="lazy"
+                  alt={penzion.name}
+                  className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
+                <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                  {/* <span className="text-gray-300 text-lg lg:text-xl">
                       {penzion.description}
                     </span> */}
-                    <span className="text-xl font-semibold text-white lg:text-4xl">
-                      {penzion.name}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 p-4 text-xl">
-                  {penzion?.kpi?.map((kpi, index) => (
-                    <span key={index} className="text-gray-500">
-                      {kpi}
-                    </span>
-                  ))}
-                </div>
-                {penzion.longDesc && (
-                  <span className="text-gray-500 text-sm p-4">
-                    {penzion.longDesc}
-                  </span>
-                )}
-                <div className="mb-4 flex justify-end mr-4">
-                  <span className="text-white text-center text-sm uppercase font-bold p-2 bg-teal-600 rounded-md tracking-tight">
-                    navštívit {penzion.name}
+                  <span className="text-xl font-semibold text-white lg:text-4xl">
+                    {penzion.name}
                   </span>
                 </div>
-              </a>
+              </div>
+              <div className="flex flex-col gap-2 p-4 text-xl">
+                {penzion?.kpi?.map((kpi, index) => (
+                  <span key={index} className="text-gray-500">
+                    {kpi}
+                  </span>
+                ))}
+              </div>
+              {penzion.longDesc && (
+                <span className="text-gray-500 text-sm p-4">
+                  {penzion.longDesc}
+                </span>
+              )}
+              <div className="mb-4 flex flex-col md:flex-row items-center justify-between mx-2 gap-2">
+                <a
+                  href={penzion.href}
+                  className="w-full text-teal-600 text-sm font-light no-wrap underline underline-offset-2 decoration-teal-600 p-2 tracking-tight"
+                >
+                  navštívit {penzion.name}
+                </a>
+                <BookingButton accommodation={penzion.name} />
+              </div>
             </div>
           ))}
         </div>

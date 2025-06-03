@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { Toaster } from "react-hot-toast";
 import BookingForm from "./booking";
 
-export default function BookingModal({ isOpen, onClose }) {
+export default function BookingModal({ isOpen, onClose, accommodation }) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -36,12 +36,16 @@ export default function BookingModal({ isOpen, onClose }) {
                 <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-bold leading-6 text-gray-900 mb-4"
+                    className="text-2xl font-bold leading-6 text-gray-900 mb-4 text-center"
                   >
-                    Rezervace ubytování
+                    Poptávka ubytování
+                    <br /> {accommodation}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <BookingForm onSuccess={onClose} />
+                    <BookingForm
+                      onSuccess={onClose}
+                      accommodation={accommodation}
+                    />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

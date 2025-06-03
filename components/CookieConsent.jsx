@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 
 export default function CookieConsent() {
   const [showConsent, setShowConsent] = useState(true); // Start with true to show in dev
-  const [showPreferences, setShowPreferences] = useState(true);
+  const [showPreferences, setShowPreferences] = useState(false);
   const [consent, setConsent] = useState({
     necessary: true,
-    analytics: false,
-    marketing: false,
+    analytics: true,
+    marketing: true,
   });
 
   useEffect(() => {
@@ -51,12 +51,12 @@ export default function CookieConsent() {
   // Don't render anything if both consent and preferences are hidden
   if (!showConsent && !showPreferences) {
     return (
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="text-right bottom-1 right-1 z-50">
         <button
           onClick={() => setShowPreferences(true)}
           className="text-sm text-blue-600 underline hover:text-blue-800 transition-colors"
         >
-          Změnit nastavení cookies
+          Nastavení cookies
         </button>
       </div>
     );
@@ -136,8 +136,7 @@ export default function CookieConsent() {
             <div className="max-w-2xl">
               {/* <h2 className="text-lg font-semibold">Používáme cookies</h2> */}
               <p className="text-sm text-gray-600">
-                Používáme cookies pro zlepšení vašeho zážitku na našem webu.
-                Můžete si vybrat, které cookies chcete povolit.
+                Používáme cookies pro zlepšení fungování webu.
               </p>
             </div>
             <div className="flex space-x-4">

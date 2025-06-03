@@ -2,7 +2,7 @@ import HoverPanel from "@/components/HoverPanel";
 
 export default function Hero() {
   return (
-    <main className="h-[50vh] min-h-[200px] md:min-h-[400px] w-full flex flex-col md:flex-row overflow-hidden">
+    <main className="md:h-[50vh] min-h-[200px] md:min-h-[400px] w-full flex flex-col md:flex-row overflow-hidden gap-1 md:gap-0">
       <HoverPanel
         title="Glamping a tiny house"
         image="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262134/Kamil/vW45A8151.webp"

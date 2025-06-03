@@ -23,9 +23,9 @@ export default function HoverPanel({ title, image, href, position }) {
     <div
       className={clsx(
         "relative transition-all duration-500 ease-in-out bg-cover bg-center opacity-100 animate-fadeIn",
-        "h-[33vh] md:h-full",
+        "h-32 md:h-full min-h-32",
         "w-full md:hover:grow",
-        basisClasses[position]
+        basisClasses[position],
       )}
       style={{
         backgroundImage: `url(${image})`,
@@ -40,8 +40,10 @@ export default function HoverPanel({ title, image, href, position }) {
       >
         <h2
           className={clsx(
-            "text-white text-3xl font-bold text-center p-4 transition-all duration-500 ",
-            isHovered ? "scale-150" : "md:scale-70 md:opacity-0 animate-scaleIn"
+            "text-white text-3xl font-bold text-center p-4 transition-all duration-500",
+            isHovered
+              ? "scale-110"
+              : "md:scale-90 md:opacity-0 animate-scaleIn",
           )}
         >
           {title}

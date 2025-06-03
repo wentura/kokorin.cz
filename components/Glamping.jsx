@@ -1,4 +1,5 @@
 import React from "react";
+import BookingButton from "./BookingButton";
 import { glampingData } from "./GlampingData";
 export default function Glamping() {
   return (
@@ -22,46 +23,45 @@ export default function Glamping() {
           {glampingData.map((glamping) => (
             <div
               key={glamping.name}
-              className={` ${
+              className={`border-1 border-gray-100 rounded-lg shadow-lg ${
                 glamping.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
-              <a
-                href={glamping.href}
-                className="flex flex-col min-h-80 rounded-lg shadow-lg border-1 border-gray-200"
-              >
-                <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-200">
-                  <img
-                    src={glamping.image}
-                    loading="lazy"
-                    alt={glamping.name}
-                    className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
-                  <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
-                    <span className="text-xl font-semibold text-white lg:text-4xl">
-                      {glamping.name}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2 p-4 text-xl">
-                  {glamping?.kpi?.map((kpi, index) => (
-                    <span key={index} className="text-gray-500">
-                      {kpi}
-                    </span>
-                  ))}
-                </div>
-                {glamping.longDesc && (
-                  <span className="text-gray-500 text-sm p-4">
-                    {glamping.longDesc}
-                  </span>
-                )}
-                <div className="mb-4 flex justify-end mr-4">
-                  <span className="text-white text-center text-sm uppercase font-bold p-2 bg-teal-600 rounded-md tracking-tight">
-                    navštívit glamping {glamping.name}
+              <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-200">
+                <img
+                  src={glamping.image}
+                  loading="lazy"
+                  alt={glamping.name}
+                  className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
+                <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                  <span className="text-xl font-semibold text-white lg:text-4xl">
+                    {glamping.name}
                   </span>
                 </div>
-              </a>
+              </div>
+              <div className="flex flex-col gap-2 p-4 text-xl">
+                {glamping?.kpi?.map((kpi, index) => (
+                  <span key={index} className="text-gray-500">
+                    {kpi}
+                  </span>
+                ))}
+              </div>
+              {glamping.longDesc && (
+                <span className="text-gray-500 text-sm p-4">
+                  {glamping.longDesc}
+                </span>
+              )}
+              <div className="mb-4 flex flex-col md:flex-row items-center justify-between mx-2 gap-2">
+                <a
+                  href={glamping.href}
+                  className="w-full text-teal-600 text-sm font-light no-wrap underline underline-offset-2 decoration-teal-600 p-2 tracking-tight"
+                >
+                  navštívit {glamping.name}
+                </a>
+                <BookingButton accommodation={glamping.name} />
+              </div>
             </div>
           ))}
         </div>
