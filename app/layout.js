@@ -54,8 +54,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <BookingForm /> */}
-      <body>{children}</body>
-      <CookieConsent />
+      <body>
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

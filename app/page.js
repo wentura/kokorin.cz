@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import FooterLinks from "@/components/FooterLinks";
 import Glamping from "@/components/Glamping";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Hero_bak";
 import HoverPanel from "@/components/HoverPanel";
 import Kemping from "@/components/Kemping";
 import Matomo from "@/components/Matomo";

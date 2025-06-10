@@ -27,7 +27,10 @@ export default function Penziony() {
                 penzion.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
-              <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-100">
+              <a
+                href={penzion.href}
+                className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-100"
+              >
                 <img
                   src={penzion.image}
                   loading="lazy"
@@ -36,15 +39,15 @@ export default function Penziony() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
                 <div className="relative flex flex-col p-6 rounded-lg bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">
-                  {/* <span className="text-gray-300 text-lg lg:text-xl">
-                      {penzion.description}
-                    </span> */}
                   <span className="text-xl font-semibold text-white lg:text-4xl">
                     {penzion.name}
                   </span>
                 </div>
+              </a>
+              <div className="text-gray-900 text-xl lg:text-3xl font-medium my-6 px-4">
+                {penzion.claim}
               </div>
-              <div className="flex flex-col gap-2 p-4 text-xl">
+              <div className="flex flex-col gap-2 px-4 text-xl">
                 {penzion?.kpi?.map((kpi, index) => (
                   <span key={index} className="text-gray-500">
                     {kpi}
@@ -61,7 +64,7 @@ export default function Penziony() {
                   href={penzion.href}
                   className="w-full text-teal-600 text-sm font-light no-wrap underline underline-offset-2 decoration-teal-600 p-2 tracking-tight"
                 >
-                  navštívit {penzion.name}
+                  navštívit web {penzion.name}
                 </a>
                 <BookingButton
                   accommodation={penzion.name}

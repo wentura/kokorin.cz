@@ -27,7 +27,10 @@ export default function Glamping() {
                 glamping.colSpan === "col-span-2" ? "md:col-span-2" : ""
               }`}
             >
-              <div className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-200">
+              <a
+                href={glamping.href}
+                className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-100"
+              >
                 <img
                   src={glamping.image}
                   loading="lazy"
@@ -40,8 +43,11 @@ export default function Glamping() {
                     {glamping.name}
                   </span>
                 </div>
+              </a>
+              <div className="text-gray-900 text-xl lg:text-3xl font-medium my-6 px-4">
+                {glamping.claim}
               </div>
-              <div className="flex flex-col gap-2 p-4 text-xl">
+              <div className="flex flex-col gap-2 px-4 text-xl">
                 {glamping?.kpi?.map((kpi, index) => (
                   <span key={index} className="text-gray-500">
                     {kpi}
@@ -58,7 +64,7 @@ export default function Glamping() {
                   href={glamping.href}
                   className="w-full text-teal-600 text-sm font-light no-wrap underline underline-offset-2 decoration-teal-600 p-2 tracking-tight"
                 >
-                  navštívit {glamping.name}
+                  navštívit web {glamping.name}
                 </a>
                 <BookingButton
                   accommodation={glamping.name}
