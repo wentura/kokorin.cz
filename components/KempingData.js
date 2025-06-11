@@ -13,7 +13,7 @@ export const kempingData = [
       "Snídaně, možnost polopenze",
     ],
     longDesc: "",
-    hiddenBooking: true,
+    hiddenBooking: false,
     contact: "info@harasov.eu",
   },
   {

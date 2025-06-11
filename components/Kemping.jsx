@@ -1,4 +1,5 @@
 import React from "react";
+// import BookingButton from "./BookingButtonKemp";
 import BookingButton from "./BookingButton";
 import { kempingData } from "./KempingData";
 export default function Kemping() {

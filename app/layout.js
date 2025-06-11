@@ -34,7 +34,7 @@ export const metadata = {
     "turistické zajímavosti",
   ],
   openGraph: {
-    title: "Kokořín – srdce CHKO Kokořínsko",
+    title: "Kokořín – prostě nejlepší dovolená v Čechách",
     description:
       "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
     url: "https://kokorin.cz",
@@ -44,7 +44,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kokořín – srdce CHKO Kokořínsko",
+    title: "Kokořín – prostě nejlepší dovolená v Čechách",
     description:
       "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
   },
