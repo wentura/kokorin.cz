@@ -8,7 +8,7 @@ import "./globals.css";
 //     "Kokořínsko, kraj pískovcových skal, hlubokých lesů a romantických hradů",
 // };
 export const metadata = {
-  title: "Kokořín – rostě nejlepší dovolená v Čechách",
+  title: "Kokořín – prostě nejlepší dovolená v Čechách",
   description:
     "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
   keywords: [
