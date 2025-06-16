@@ -45,12 +45,14 @@ export default function HoverPanel({ title, image, href, position }) {
       >
         <Link
           href={href}
-          className="w-full h-full flex items-center justify-center bg-black/10 hover:bg-black/50 transition-colors"
+          className="w-full h-full flex items-center justify-center bg-black/45 md:bg-black/25 hover:bg-black/65 transition-colors"
         >
           <motion.h2
             className={clsx(
-              "text-white text-3xl font-bold text-center p-4",
-              isHovered ? "md:scale-110" : "md:scale-90 md:opacity-0",
+              "text-white text-3xl md:text-4xl font-extrabold md:font-extralight text-center p-4 uppercase tracking-tight",
+              isHovered
+                ? "md:scale-110 md:font-bold"
+                : "md:scale-90 md:opacity-0",
             )}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

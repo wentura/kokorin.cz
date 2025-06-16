@@ -80,11 +80,11 @@ export default function Page() {
       <div className="flex flex-col max-w-screen-2xl mx-auto my-10 md:my-16 gap-3 px-4">
         <div className="w-full flex flex-col md:flex-row items-center justify-between">
           <div className="w-full flex flex-col gap-4">
-            <h1 className="text-4xl font-extrabold text-left -mb-3">
+            <h1 className="text-4xl font-extralight text-left -mb-3 md:text-8xl tracking-tight uppercase">
               Kokořínsko
             </h1>
-            <h2 className="text-2xl text-left">
-              kraj pískovcových skal, hlubokých lesů a romantických hradů
+            <h2 className="text-xl md:text-3xl text-left font-extrabold pl-1 tracking-wide">
+              kraj pískovcových skal, hlubokých lesů a romantických míst 
             </h2>
           </div>
           <div className="w-full flex justify-center md:justify-end mt-0">
