@@ -6,12 +6,18 @@ export const kempingData = [
     href: "https://www.kempharasov.cz",
     claim: "moderní kemp evropského standardu",
     description: "moderní kemp",
-    kpi: [
+    kpi2: [
       "Na břehu rybníka Harasov – součástí Letoviska Harasov",
       "Plně vybavený kemp evropského standardu",
       "Půjčovna paddleboardů, mtb a elektrokol přímo v kempu",
       "Snídaně, možnost polopenze",
     ],
+    kpi: [
+      "Příroda, voda, stín stromů a atmosféra jako z dob, kdy se jezdilo pod stan s celou partou. U nás i s moderním zázemím a férovými cenami.",
+    ],
+    preLinkText: "Užijte si klid i komfort.",
+    linkText: "Rezervujte pobyt",
+    postLinkText: "ještě dnes.",
     longDesc: "",
     hiddenBooking: false,
     contact: "info@harasov.eu",

@@ -6,9 +6,15 @@ export const glampingData = [
     href: "https://www.malbenka.cz",
     description: "glamping ve stylu trampské osady Harakoko",
     claim: "ve stylu trampské osady Harakoko",
-    kpi: [
+    kpi2: [
       "Postavená ve stylu trampské osady Harakoko na skále nad penzionem Malba připomíná Orlí hnízdo a nabízí dechberoucí výhledy na okolní krajinu včetně hradu Kokořín",
     ],
+    kpi: [
+      "Malá, útulná a nezapomenutelná. Malbenka vás obejme svou atmosférou – jako chalupa, kam jste vždycky chtěli jezdit.",
+    ],
+    preLinkText: "Najděte svůj klidný kout –",
+    linkText: "navštivte náš web.",
+    postLinkText: "",
     longDesc: "",
     contact: "malbenka@kokorin.cz",
   },
@@ -22,6 +28,9 @@ export const glampingData = [
     kpi: [
       "Domeček, kde voní les a čas běží pomalu. Stačí otevřít dveře a jste v pohádce.",
     ],
+    preLinkText: "Ideální místo pro společné chvíle.",
+    linkText: "Zjistěte víc.",
+    postLinkText: "",
     longDesc: "",
     contact: "milcinka@kokorin.cz",
   },

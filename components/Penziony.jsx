@@ -52,11 +52,22 @@ export default function Penziony() {
                   {/* {penzion.claim} */}
                 </div>
                 <div className="flex flex-col gap-0 px-4 text-xl pb-8">
-                  {penzion?.kpi?.map((kpi, index) => (
+                  {/* {penzion?.kpi?.map((kpi, index) => (
                     <span key={index} className="text-gray-500">
                       {kpi}
                     </span>
-                  ))}
+                  ))} */}
+                  <span
+                    className={`text-gray-500 ${
+                      penzion.colSpan === "col-span-2" ? "max-w-5xl" : ""
+                    }`}
+                  >
+                    {penzion?.kpi} {penzion.preLinkText}{" "}
+                    <a href={penzion.href} className="text-teal-600 underline">
+                      {penzion.linkText}
+                    </a>{" "}
+                    {penzion.postLinkText}
+                  </span>
                 </div>
                 {penzion.longDesc && (
                   <span className="text-gray-500 text-sm p-4">

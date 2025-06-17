@@ -49,7 +49,7 @@ export default function Kemping() {
                   </div>
                 </a>
                 <div className="text-gray-900 text-xl lg:text-3xl font-medium my-6 px-4">
-                  {kemping.claim}
+                  {/* {kemping.claim} */}
                 </div>
                 <div className="flex flex-col gap-0 px-4 text-xl pb-8">
                   {kemping?.kpi?.map((kpi, index) => (

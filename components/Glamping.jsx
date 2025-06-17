@@ -49,14 +49,25 @@ export default function Glamping() {
                   </div>
                 </a>
                 <div className="text-gray-900 text-xl lg:text-3xl font-medium my-6 px-4">
-                  {glamping.claim}
+                  {/* {glamping.claim} */}
                 </div>
                 <div className="flex flex-col gap-0 px-4 text-xl pb-8">
-                  {glamping?.kpi?.map((kpi, index) => (
+                  {/* {glamping?.kpi?.map((kpi, index) => (
                     <span key={index} className="text-gray-500">
                       {kpi}
                     </span>
-                  ))}
+                  ))} */}
+                  <span
+                    className={`text-gray-500 ${
+                      glamping.colSpan === "col-span-2" ? "max-w-5xl" : ""
+                    }`}
+                  >
+                    {glamping?.kpi} {glamping.preLinkText}{" "}
+                    <a href={glamping.href} className="text-teal-600 underline">
+                      {glamping.linkText}
+                    </a>{" "}
+                    {glamping.postLinkText}
+                  </span>
                 </div>
                 {glamping.longDesc && (
                   <span className="text-gray-500 text-sm p-4">
