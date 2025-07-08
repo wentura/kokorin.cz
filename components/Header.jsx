@@ -5,8 +5,7 @@ export default function Header() {
         <div className="w-full flex flex-col items-center justify-center">
           <h1 className="text-gray-200 text-lg md:text-4xl 2xl:text-6xl font-extralight text-center tracking-tight">
             Kokořínsko,
-            <br className="block md:hidden" /> to nejlepší místo pro váši
-            dovolenou
+            <br className="block md:hidden" /> nejlepší místo pro váši dovolenou
           </h1>
         </div>
       </div>

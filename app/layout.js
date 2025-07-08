@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata = {
   title: "Kokořín – prostě nejlepší dovolená v Čechách",
   description:
-    "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
+    "Užijte si klid a relax v srdci Kokořínska: pískovcové skály, historické hrady, cyklostezky, koupání a odpočinek v přírodě. Rezervujte nyní!",
   keywords: [
     "Kokořín",
     "Kokořínsko",
@@ -34,9 +34,9 @@ export const metadata = {
     "turistické zajímavosti",
   ],
   openGraph: {
-    title: "Kokořín – prostě nejlepší dovolená v Čechách",
+    title: "Kokořín – nejlepší dovolená v Čechách",
     description:
-      "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
+      "Užijte si klid a relax v srdci Kokořínska: pískovcové skály, historické hrady, cyklostezky, koupání a odpočinek v přírodě. Rezervujte nyní!",
     url: "https://kokorin.cz",
     siteName: "Kokořín.cz",
     locale: "cs_CZ",
@@ -44,9 +44,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kokořín – prostě nejlepší dovolená v Čechách",
+    title: "Kokořín – nejlepší dovolená v Čechách",
     description:
-      "Objevte Kokořín a okolí – malebnou oblast plnou skal, lesů a tradičních chalup.",
+      "Užijte si klid a relax v srdci Kokořínska: pískovcové skály, historické hrady, cyklostezky, koupání a odpočinek v přírodě. Rezervujte nyní!",
   },
   robots: "index, follow",
 };

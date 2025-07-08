@@ -84,7 +84,7 @@ export default function Page() {
               Kokořínsko
             </h1>
             <h2 className="text-xl md:text-3xl text-left font-extrabold pl-1 tracking-wide">
-              kraj pískovcových skal, hlubokých lesů a romantických míst 
+              kraj pískovcových skal, hlubokých lesů a romantických míst
             </h2>
           </div>
           <div className="w-full flex justify-center md:justify-end mt-0">
@@ -99,7 +99,17 @@ export default function Page() {
       </div>
       <Hero />
       <div className="flex flex-col max-w-screen-2xl mx-auto my-16 gap-3 px-4">
-        <p className="text-gray-800 text-lg">
+        <p className="text-gray-800 text-lg md:text-xl">
+          <span className="font-bold">Kokořínsko</span> vás vítá krajinou
+          pískovcových skal, malebných hradů a tajemných lesů.
+          <br />
+          Stačí otevřít dveře a ocitnete se v přírodě – ideální pro cyklistické
+          výlety, hradní dobrodružství i osvěžující koupání při rybníku.
+        </p>
+        <p className="text-gray-800 text-2xl md:text-4xl font-bold tracking-tight pt-12 text-right">
+          Načerpejte energii a nechte se okouzlit místní atmosférou!
+        </p>
+        {/* <p className="text-gray-800 text-lg">
           <span className="font-bold">Kokořínsko</span> láká návštěvníky
           unikátními pískovcovými útvary a skalními městy, které patří k
           nejkrásnějším v Česku.
@@ -116,7 +126,7 @@ export default function Page() {
           druhů rostlin a živočichů, což ocení každý příznivec přírody.
           Panoramatické výhledy, možnost koupání a relaxace v přírodě dělají z a
           relaxace v přírodě dělají z Kokořínska ideální místo pro dovolenou.
-        </p>
+        </p> */}
         {/* <StickyBookingButton accommodation="Malba" /> */}
       </div>
       <Penziony />
