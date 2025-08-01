@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import { motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -24,13 +25,12 @@ export default function HoverPanel({ title, image, href, position }) {
     <div className="w-full">
       <motion.div
         className={clsx(
-          "relative transition-all duration-500 ease-in-out bg-cover bg-center opacity-100",
+          "relative transition-all duration-500 ease-in-out opacity-100",
           "h-32 md:h-full min-h-32",
           "w-full",
           basisClasses[position],
         )}
         style={{
-          backgroundImage: `url(${image})`,
           clipPath: clipPaths[position],
         }}
         initial={{ opacity: 0, y: 20 }}
@@ -43,25 +43,36 @@ export default function HoverPanel({ title, image, href, position }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Link
-          href={href}
-          className="w-full h-full flex items-center justify-center bg-black/45 md:bg-black/25 hover:bg-black/65 transition-colors"
-        >
-          <motion.h2
-            className={clsx(
-              "text-white text-3xl md:text-4xl font-extrabold md:font-extralight text-center p-4 uppercase tracking-tight",
-              isHovered
-                ? "md:scale-110 md:font-bold"
-                : "md:scale-90 md:opacity-0",
-            )}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.5 }}
-            whileHover={{ scale: 1.1 }}
+        <div className="relative w-full h-full">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 33vw, 33vw"
+            className="object-cover object-center"
+            priority={position === "center"}
+            quality={85}
+          />
+          <Link
+            href={href}
+            className="absolute inset-0 w-full h-full flex items-center justify-center bg-black/45 md:bg-black/25 hover:bg-black/65 transition-colors"
           >
-            {title}
-          </motion.h2>
-        </Link>
+            <motion.h2
+              className={clsx(
+                "text-white text-3xl md:text-4xl font-extrabold md:font-extralight text-center p-4 uppercase tracking-tight",
+                isHovered
+                  ? "md:scale-110 md:font-bold"
+                  : "md:scale-90 md:opacity-0",
+              )}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+            >
+              {title}
+            </motion.h2>
+          </Link>
+        </div>
       </motion.div>
     </div>
   );

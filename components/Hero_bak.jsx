@@ -11,7 +11,7 @@ export default function Hero() {
       />
       <HoverPanel
         title="Penziony"
-        image="https://www.harasov.eu/gallery/titulka_a_tiny.jpg"
+        image="https://www.harasov.eu/gallery/titulka_a_tiny.webp"
         href="#penziony"
         position="center"
       />

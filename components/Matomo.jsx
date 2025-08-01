@@ -7,6 +7,7 @@ export default function Matomo() {
       src="http://matomo.zbyneksvoboda.cz/matomo.php?idsite=20&amp;rec=1"
       className="border-0 invisible"
       alt="matomo"
+      loading="lazy"
     />
   );
 }

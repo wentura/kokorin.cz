@@ -1,0 +1,32 @@
+{
+  "name": "Kokořín.cz - Nejlepší dovolená v Čechách",
+  "short_name": "Kokořín.cz",
+  "description": "Užijte si klid a relax v srdci Kokořínska: pískovcové skály, historické hrady, cyklostezky, koupání a odpočinek v přírodě.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "lifestyle", "nature"],
+  "lang": "cs",
+  "dir": "ltr"
+}

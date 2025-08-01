@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import BookingButton from "./BookingButton";
 import { glampingData } from "./GlampingData";
@@ -32,11 +33,14 @@ export default function Glamping() {
                   href={glamping.href}
                   className="group relative flex min-h-80 items-end rounded-lg bg-gray-100 p-4 shadow-lg border-1 border-gray-100"
                 >
-                  <img
+                  <Image
                     src={glamping.image}
-                    loading="lazy"
                     alt={glamping.name}
-                    className="absolute inset-0 h-full w-full object-cover object-center rounded-t-lg"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center rounded-t-lg"
+                    priority={glamping.colSpan === "col-span-2"}
+                    quality={85}
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
                   <div className="relative flex flex-col p-4 rounded-xl bg-gray-100/5 bg-clip-padding backdrop-filter backdrop-blur-sm">

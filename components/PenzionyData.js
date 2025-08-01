@@ -1,7 +1,7 @@
 export const penzionyData = [
   {
     name: "penzion Harasov",
-    image: "https://www.harasov.eu/gallery/titulka_a_tiny.jpg",
+    image: "https://www.harasov.eu/gallery/titulka_a_tiny.webp",
     href: "https://www.harasov.eu",
     claim: "nezapomenutelná rekreace v srdci Kokořínska",
     description: "u břehu rybníka",
