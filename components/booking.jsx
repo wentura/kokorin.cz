@@ -26,9 +26,25 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
   const dateFrom = watch("dateFrom");
   const dateTo = watch("dateTo");
 
+  const formatCzDate = (d) =>
+    d
+      ? new Date(d).toLocaleDateString("cs-CZ", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        })
+      : "";
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
+      const payload = {
+        ...data,
+        accommodation: accommodation,
+        dateFrom: formatCzDate(data.dateFrom),
+        dateTo: formatCzDate(data.dateTo),
+      };
+
       // Send email to admin
       const adminResponse = await fetch("/api/send-email", {
         method: "POST",
@@ -36,13 +52,9 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          //   to: "svoboda.zbynek@gmail.com",
           to: contact,
           subject: "Nová poptávka ubytování z Kokořín.cz",
-          data: {
-            ...data,
-            accommodation: accommodation,
-          },
+          data: payload,
         }),
       });
 

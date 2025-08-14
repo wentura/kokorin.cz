@@ -2,6 +2,21 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const formatCzDate = (value) => {
+  if (!value) return "";
+  // If a pre-formatted string was sent, keep it
+  if (typeof value === "string" && /\d{2}\.\d{2}\.\d{4}/.test(value)) {
+    return value;
+  }
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return String(value);
+  return d.toLocaleDateString("cs-CZ", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+};
+
 export async function POST(request) {
   try {
     const { to, subject, data } = await request.json();
@@ -20,11 +35,10 @@ export async function POST(request) {
             <br />
             <p><strong>Jméno:</strong> ${data.name}</p>
             <p><strong>E-mail:</strong> ${data.email}</p>
-            <p><strong>Od:</strong> ${new Date(data.dateFrom).toLocaleDateString()}</p>
-            <p><strong>Do:</strong> ${new Date(data.dateTo).toLocaleDateString()}</p>
+            <p><strong>Od:</strong> ${formatCzDate(data.dateFrom)}</p>
+            <p><strong>Do:</strong> ${formatCzDate(data.dateTo)}</p>
             <p><strong>Počet dospělých:</strong> ${data.adults}</p>
             <p><strong>Počet dětí (3-10 let):</strong> ${data.infants}</p>
-            
             ${
               data.notes
                 ? `
