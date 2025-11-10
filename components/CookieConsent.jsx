@@ -2,6 +2,24 @@
 
 import { useEffect, useState } from "react";
 
+const getStorage = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const storage = window.localStorage;
+
+  if (
+    storage &&
+    typeof storage.getItem === "function" &&
+    typeof storage.setItem === "function"
+  ) {
+    return storage;
+  }
+
+  return null;
+};
+
 export default function CookieConsent() {
   const [showConsent, setShowConsent] = useState(true); // Start with true to show in dev
   const [showPreferences, setShowPreferences] = useState(false);
@@ -12,8 +30,12 @@ export default function CookieConsent() {
   });
 
   useEffect(() => {
+    const storage = getStorage();
+    if (!storage) {
+      return;
+    }
     // Check if user has already made a choice
-    const savedConsent = localStorage.getItem("cookieConsent");
+    const savedConsent = storage.getItem("cookieConsent");
     if (savedConsent) {
       setConsent(JSON.parse(savedConsent));
       setShowConsent(false);
@@ -27,12 +49,18 @@ export default function CookieConsent() {
       marketing: true,
     };
     setConsent(newConsent);
-    localStorage.setItem("cookieConsent", JSON.stringify(newConsent));
+    const storage = getStorage();
+    if (storage) {
+      storage.setItem("cookieConsent", JSON.stringify(newConsent));
+    }
     setShowConsent(false);
   };
 
   const handleSavePreferences = () => {
-    localStorage.setItem("cookieConsent", JSON.stringify(consent));
+    const storage = getStorage();
+    if (storage) {
+      storage.setItem("cookieConsent", JSON.stringify(consent));
+    }
     setShowPreferences(false);
     setShowConsent(false);
   };
@@ -44,7 +72,10 @@ export default function CookieConsent() {
       marketing: false,
     };
     setConsent(newConsent);
-    localStorage.setItem("cookieConsent", JSON.stringify(newConsent));
+    const storage = getStorage();
+    if (storage) {
+      storage.setItem("cookieConsent", JSON.stringify(newConsent));
+    }
     setShowConsent(false);
   };
 

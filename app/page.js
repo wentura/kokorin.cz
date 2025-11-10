@@ -18,7 +18,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <>
-      <Stripe text="nově poptávkový formulář" />
+      {/* <Stripe text="nově poptávkový formulář" /> */}
 
       <main className="min-h-screen">
         <section className="flex flex-col max-w-screen-2xl mx-auto my-10 md:my-16 gap-3 px-4">

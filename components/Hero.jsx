@@ -7,9 +7,9 @@ export default function Hero() {
   return (
     <motion.main
       className="md:h-[50vh] min-h-[200px] md:min-h-[400px] w-full flex flex-col md:flex-row overflow-hidden gap-1 md:gap-0"
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.5 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.2 }}
     >
       <HoverPanel
         title="Glamping a tiny house"

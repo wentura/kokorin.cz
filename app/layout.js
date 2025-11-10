@@ -1,9 +1,10 @@
-import CookieConsent from "@/components/CookieConsent";
+// import CookieConsent from "@/components/CookieConsent";
 // import PerformanceMonitor from "@/components/PerformanceMonitor";
 // import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 // import BookingForm from "@/components/booking";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "@/lib/localStoragePolyfill";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -182,7 +183,7 @@ export default function RootLayout({ children }) {
         {/* <PerformanceOptimizer /> */}
         {/* <PerformanceMonitor /> */}
         {children}
-        <CookieConsent />
+        {/* <CookieConsent /> */}
       </body>
     </html>
   );

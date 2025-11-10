@@ -25,7 +25,7 @@ export default function HoverPanel({ title, image, href, position }) {
     <div className="w-full">
       <motion.div
         className={clsx(
-          "relative transition-all duration-500 ease-in-out opacity-100",
+          "relative transition-all duration-300 ease-in-out opacity-100",
           "h-32 md:h-full min-h-32",
           "w-full",
           basisClasses[position],
@@ -36,7 +36,7 @@ export default function HoverPanel({ title, image, href, position }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          duration: 0.5,
+          duration: 0.2,
           delay: position === "left" ? 0 : position === "center" ? 0.2 : 0.4,
         }}
         whileHover={{ scale: 1.02 }}
@@ -51,7 +51,7 @@ export default function HoverPanel({ title, image, href, position }) {
             sizes="(max-width: 768px) 33vw, 33vw"
             className="object-cover object-center"
             priority={position === "center"}
-            quality={85}
+            quality={100}
           />
           <Link
             href={href}
@@ -64,9 +64,9 @@ export default function HoverPanel({ title, image, href, position }) {
                   ? "md:scale-110 md:font-bold"
                   : "md:scale-90 md:opacity-0",
               )}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 1 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
               whileHover={{ scale: 1.1 }}
             >
               {title}
