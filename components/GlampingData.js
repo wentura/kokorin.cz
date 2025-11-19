@@ -4,6 +4,7 @@ export const glampingData = [
     image:
       "https://penzionmalba.cz/_next/image?url=%2Fimages%2Fmalbenka%2Fm3.webp&w=640&q=75",
     href: "https://www.malbenka.cz",
+    hrefText: "www.malbenka.cz",
     description: "glamping ve stylu trampské osady Harakoko",
     claim: "ve stylu trampské osady Harakoko",
     kpi2: [
@@ -23,6 +24,7 @@ export const glampingData = [
     image:
       "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262139/Kamil/W45A8159.webp",
     href: "https://www.milcinka.cz",
+    hrefText: "www.milcinka.cz",
     claim: "kouzelná chata na lesním paloučku",
     description: "glamping na paloučku",
     kpi: [

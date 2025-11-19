@@ -4,6 +4,7 @@ export const kempingData = [
     image:
       "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
     href: "https://www.kempharasov.cz",
+    hrefText: "www.kempharasov.cz",
     claim: "moderní kemp evropského standardu",
     description: "moderní kemp",
     kpi2: [
@@ -26,6 +27,7 @@ export const kempingData = [
     name: "tábořiště U splávku",
     image: "https://taboristeusplavku.cz/img/18.webp",
     href: "https://www.taboristeusplavku.cz/",
+    hrefText: "www.taboristeusplavku.cz",
     claim: "v krásném prostředí CHKO Kokořínska",
     description: "malebné tábořiště",
     kpi: [

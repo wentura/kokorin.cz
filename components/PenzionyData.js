@@ -3,6 +3,7 @@ export const penzionyData = [
     name: "penzion Harasov",
     image: "https://www.harasov.eu/gallery/titulka_a_tiny.webp",
     href: "https://www.harasov.eu",
+    hrefText: "www.harasov.eu",
     claim: "nezapomenutelná rekreace v srdci Kokořínska",
     description: "u břehu rybníka",
     colSpan: "col-span-2",
@@ -26,6 +27,7 @@ export const penzionyData = [
     image:
       "https://malba-pracovni.netlify.app/_next/image?url=%2Fimages%2Fmalba%2Fml.webp&w=828&q=75",
     href: "https://www.penzionmalba.cz/",
+    hrefText: "www.penzionmalba.cz",
     claim: "jedinečné ubytování pod hradem Kokořín",
     description: "v srdci Kokořínska",
     kpi2: [
@@ -47,6 +49,7 @@ export const penzionyData = [
     image:
       "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262138/Kamil/W45A8125.webp",
     href: "https://www.penzionmilca.cz/",
+    hrefText: "www.penzionmilca.cz",
     claim: "jediný penzion, který je opravdu v lese",
     description: "na lesním paloučku",
     kpi2: ["Stylová lesní vila na samotě uprostřed lesa v srdci Kokořínska."],
