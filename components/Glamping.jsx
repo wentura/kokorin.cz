@@ -47,8 +47,8 @@ export default function Glamping() {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center rounded-t-lg"
-                      priority={glamping.colSpan === "col-span-2"}
-                      quality={85}
+                    priority={glamping.colSpan === "col-span-2"}
+                    quality={80}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50" />
                   </a>

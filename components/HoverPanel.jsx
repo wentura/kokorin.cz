@@ -48,10 +48,10 @@ export default function HoverPanel({ title, image, href, position }) {
             src={image}
             alt={title}
             fill
-            sizes="(max-width: 768px) 33vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
             className="object-cover object-center"
             priority={position === "center"}
-            quality={100}
+            quality={80}
           />
           <Link
             href={href}

@@ -99,16 +99,12 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
 };
 
 export const viewport = {
   themeColor: "#0d9488",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 const structuredData = {
@@ -160,12 +156,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="cs" className={`${geist.variable} ${geistMono.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://www.harasov.eu" />
         <link rel="dns-prefetch" href="https://malba-pracovni.netlify.app" />
@@ -183,6 +173,7 @@ export default function RootLayout({ children }) {
         {/* <PerformanceOptimizer /> */}
         {/* <PerformanceMonitor /> */}
         {children}
+        {/* Cookie lišta pro marketingové/ads cookies */}
         {/* <CookieConsent /> */}
       </body>
     </html>

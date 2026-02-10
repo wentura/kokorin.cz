@@ -1,24 +1,63 @@
 // "use client";
 // import { motion } from "framer-motion";
-
+// import Hero from "@/components/Hero";
 import BookingButton from "@/components/BookingButton";
 import Footer from "@/components/Footer";
 import FooterLinks from "@/components/FooterLinks";
-import Glamping from "@/components/Glamping";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import HoverPanel from "@/components/HoverPanel";
-import Kemping from "@/components/Kemping";
+import dynamic from "next/dynamic";
 import Matomo from "@/components/Matomo";
-import Penziony from "@/components/Penziony";
-import StickyBookingButton from "@/components/StickyBookingButton";
+const Hero = dynamic(() => import("@/components/Hero"), {
+  ssr: true,
+  loading: () => (
+    <div className="md:h-[50vh] min-h-[200px] md:min-h-[400px] w-full bg-gray-100 animate-pulse rounded-lg" />
+  ),
+});
+
+const Penziony = dynamic(() => import("@/components/Penziony"), {
+  loading: () => (
+    <section className="max-w-screen-2xl mx-auto my-16 px-4">
+      <div className="h-10 w-40 bg-gray-100 rounded-full mb-6 animate-pulse" />
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+      </div>
+    </section>
+  ),
+});
+
+const Glamping = dynamic(() => import("@/components/Glamping"), {
+  loading: () => (
+    <section className="max-w-screen-2xl mx-auto my-16 px-4">
+      <div className="h-10 w-56 bg-gray-100 rounded-full mb-6 animate-pulse" />
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+      </div>
+    </section>
+  ),
+});
+
+const Kemping = dynamic(() => import("@/components/Kemping"), {
+  loading: () => (
+    <section className="max-w-screen-2xl mx-auto my-16 px-4">
+      <div className="h-10 w-64 bg-gray-100 rounded-full mb-6 animate-pulse" />
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+        <div className="h-80 bg-gray-100 rounded-xl animate-pulse" />
+      </div>
+    </section>
+  ),
+});
+
+// import StickyBookingButton from "@/components/StickyBookingButton";
 import Stripe from "@/components/Stripe";
 import Link from "next/link";
 
 export default function Page() {
   return (
     <>
-      {/* <Stripe text="nově poptávkový formulář" /> */}
+      {/* <Header /> */}
 
       <main className="min-h-screen">
         <section className="flex flex-col max-w-screen-2xl mx-auto my-10 md:my-16 gap-3 px-4">
@@ -59,6 +98,7 @@ export default function Page() {
         <FooterLinks />
         <Footer />
         <Matomo />
+        {/* <StickyBookingButton /> */}
       </main>
     </>
   );
