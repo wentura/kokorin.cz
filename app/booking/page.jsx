@@ -1,4 +1,4 @@
-import BookingModal from "@/components/BookingModal";
+import BookingPageClient from "@/components/BookingPageClient";
 
 export const metadata = {
   title: "Poptávka ubytování – Kokořín",
@@ -23,7 +23,7 @@ export default function BookingPage() {
           </p>
         </section>
 
-        <BookingModal isOpen={true} onClose={() => {}} />
+        <BookingPageClient />
 
         <p className="mt-6 text-xs text-gray-500 text-center">
           Odesláním formuláře souhlasíte se zpracováním osobních údajů pro účely
