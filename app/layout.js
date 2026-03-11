@@ -58,9 +58,6 @@ export const metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://kokorin.cz"),
-  alternates: {
-    canonical: "/",
-  },
   manifest: "/manifest.json",
   openGraph: {
     title: "Kokořín – nejlepší dovolená v Čechách",
@@ -160,6 +157,10 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://www.harasov.eu" />
         <link rel="dns-prefetch" href="https://malba-pracovni.netlify.app" />
         <link rel="manifest" href="/manifest.json" />
+        <link
+          rel="apple-touch-icon"
+          href="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp"
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Kokořín.cz" />

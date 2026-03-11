@@ -54,6 +54,10 @@ const Kemping = dynamic(() => import("@/components/Kemping"), {
 import Stripe from "@/components/Stripe";
 import Link from "next/link";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Page() {
   return (
     <>
@@ -81,14 +85,20 @@ export default function Page() {
         <section className="flex flex-col max-w-screen-2xl mx-auto my-16 gap-3 px-4">
           <p className="text-gray-800 text-lg md:text-xl leading-relaxed">
             <span className="font-bold">Kokořínsko</span> vás vítá krajinou
-            pískovcových skal, malebných hradů a tajemných lesů.
-            <br />
-            Stačí otevřít dveře a ocitnete se v přírodě – ideální pro
-            cyklistické výlety, hradní dobrodružství i osvěžující koupání při
-            rybníku.
+            pískovcových skal, malebných hradů a tajemných lesů. Nabízíme vám
+            přehled <Link href="#penziony" className="text-teal-600 underline underline-offset-2">penzionů</Link>,{" "}
+            <Link href="#glamping" className="text-teal-600 underline underline-offset-2">glamping a tiny house</Link> i{" "}
+            <Link href="#kemping" className="text-teal-600 underline underline-offset-2">kempy a tábořiště</Link> v regionu – stačí otevřít dveře a ocitnete se v přírodě. Ideální pro cyklistické výlety, hradní dobrodružství i osvěžující koupání u rybníka.
           </p>
           <p className="text-gray-800 text-2xl md:text-4xl font-bold tracking-tight pt-12 text-right">
             Načerpejte energii a nechte se okouzlit místní atmosférou!
+          </p>
+          {/* Návrh – upravte před publikací: další odstavce pro lepší SEO (min. 250 slov na stránce). */}
+          <p className="text-gray-800 text-lg md:text-xl leading-relaxed pt-6">
+            Dovolená v Čechách nemusí znamenat dálkové cestování. Kokořínsko je jedna z nejkrásnějších přírodních oblastí Středočeského kraje: romantický hrad Kokořín, pískovcové Pokličky, údolí a rybníky lákají k pěším i cyklistickým výletům. Ubytování zde najdete v různých stylech – od pohodlných penzionů s restaurací až po glamping a kempy pro milovníky stanů a karavanů.
+          </p>
+          <p className="text-gray-800 text-lg md:text-xl leading-relaxed">
+            Ať už plánujete víkend na kole, dovolenou s dětmi u vody, nebo túru po skalách, náš přehled ubytování na Kokořínsku vám pomůže vybrat to pravé. Pro rychlou poptávku využijte formulář – <Link href="/booking" className="text-teal-600 underline underline-offset-2 font-medium">poptávka ubytování</Link> je bez závazku a provozovatelé se vám ozvou s nabídkou.
           </p>
         </section>
 
