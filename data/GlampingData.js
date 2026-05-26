@@ -1,5 +1,7 @@
 export const glampingData = [
   {
+    id: "malbenka",
+    category: "glamping",
     name: "Malběnka",
     image:
       "https://penzionmalba.cz/_next/image?url=%2Fimages%2Fmalbenka%2Fm3.webp&w=640&q=75",
@@ -18,8 +20,22 @@ export const glampingData = [
     postLinkText: "",
     longDesc: "",
     contact: "malbenka@kokorin.cz",
+    maxGuests: 4,
+    maxChildren310: 2,
+    maxDogs: 1,
+    maxCats: 0,
+    priceFrom: 2490,
+    priceUnit: "Kč / noc",
+    idealFor: "páry a klidný víkend",
+    mainBenefit: "Romantická chata na skále s výhledy na Kokořínsko.",
+    tags: ["pro páry", "výhled", "pod hradem"],
+    locationShort: "nad penzionem Malba",
+    foodOption: "bez stravy, bistro v dosahu",
+    petPolicyShort: "1 pes po domluvě",
   },
   {
+    id: "milcinka",
+    category: "glamping",
     name: "Milčinka",
     image:
       "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262139/Kamil/W45A8159.webp",
@@ -35,5 +51,17 @@ export const glampingData = [
     postLinkText: "",
     longDesc: "",
     contact: "milcinka@kokorin.cz",
+    maxGuests: 5,
+    maxChildren310: 3,
+    maxDogs: 1,
+    maxCats: 0,
+    priceFrom: 2290,
+    priceUnit: "Kč / noc",
+    idealFor: "menší rodiny a páry",
+    mainBenefit: "Tiny house na paloučku se soukromím a lesem kolem.",
+    tags: ["tiny house", "v lese", "pro páry"],
+    locationShort: "Kokořínsko, lesní palouček",
+    foodOption: "bez stravy, vaření v objektu",
+    petPolicyShort: "1 pes po domluvě",
   },
 ];

@@ -1,17 +1,13 @@
 "use client";
 
+import { trackLeadSubmit } from "@/lib/analytics";
 import { cs } from "date-fns/locale";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import { PrimarySubmitButton } from "@/components/PrimaryCta";
 import { toast } from "react-hot-toast";
-
-const accommodationTypes = [
-  { value: "penzion", label: "Penzion" },
-  { value: "glamping", label: "Glamping" },
-  { value: "kemping", label: "Kemping" },
-];
 
 export default function BookingForm({ onSuccess, accommodation, contact }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,16 +25,14 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      // Send email to admin
-      const adminResponse = await fetch("/api/send-email", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          //   to: "svoboda.zbynek@gmail.com",
-          to: contact,
-          subject: "Nová poptávka ubytování z Kokořín.cz",
+          messageType: "legacyPair",
+          adminTo: contact,
           data: {
             ...data,
             accommodation: accommodation,
@@ -46,24 +40,15 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
         }),
       });
 
-      // Send confirmation email to user
-      const userResponse = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          to: data.email,
-          subject: "Vaše poptávka ubytování na Kokořín.cz",
-          data: {
-            name: data.name,
-            message:
-              "Děkujeme za vaši poptávku ubytování na Kokořín.cz.<br />Budeme vás kontaktovat co nejdříve.<br /><br /><br />S pozdravem, tým Kokořín.cz",
-          },
-        }),
-      });
+      const body = response.ok ? await response.json() : null;
+      const routingMode = body?.routing?.routingMode ?? "unknown";
 
-      if (adminResponse.ok && userResponse.ok) {
+      if (response.ok) {
+        trackLeadSubmit({
+          outcome: "success",
+          routingMode,
+          source: "kemp-box",
+        });
         toast.success("Poptávka byla úspěšně odeslána!");
         if (onSuccess) {
           onSuccess();
@@ -72,6 +57,11 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
         throw new Error("Failed to send emails");
       }
     } catch (error) {
+      trackLeadSubmit({
+        outcome: "error",
+        routingMode: "unknown",
+        source: "kemp-box",
+      });
       toast.error(
         "Nepodařilo se odeslat poptávku. Prosím zkuste to znovu a nebo nám napište na info@kokorin.cz",
       );
@@ -111,7 +101,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
             type="text"
             id="name"
             {...register("name", { required: "Jméno je povinné" })}
-            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
           />
           {errors.name && (
             <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
@@ -135,7 +125,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
                 message: "Neplatná e-mailová adresa",
               },
             })}
-            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
           />
           {errors.email && (
             <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
@@ -157,7 +147,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
               startDate={dateFrom}
               endDate={dateTo}
               minDate={new Date()}
-              className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
               dateFormat="dd.MM.yyyy"
               locale={cs}
               calendarStartDay={1}
@@ -186,7 +176,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
               startDate={dateFrom}
               endDate={dateTo}
               minDate={dateFrom}
-              className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="p-2 mt-1 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
               dateFormat="dd.MM.yyyy"
               locale={cs}
               calendarStartDay={1}
@@ -218,7 +208,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
                 required: "Počet dospělých je povinný",
                 min: { value: 1, message: "Minimálně 1 dospělý" },
               })}
-              className="mt-1 p-2 block w-full md:w-26 rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 p-2 block w-full md:w-26 rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
             />
             {errors.adults && (
               <p className="mt-1 text-sm text-red-600">
@@ -240,7 +230,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
               id="infants"
               min="0"
               {...register("infants")}
-              className="mt-1 p-2 block w-full md:w-26 rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 p-2 block w-full md:w-26 rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
             />
             {errors.infants && (
               <p className="mt-1 text-sm text-red-600">
@@ -262,17 +252,13 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
             rows="3"
             placeholder="Poznámky k vaší rezervaci..."
             {...register("notes")}
-            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-1 p-2 block w-full rounded-md border-1 border-gray-300 shadow-sm focus:border-[#1A6E6E] focus:outline-none focus:ring-2 focus:ring-[#7DD3CF]"
           />
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm md:text-xl uppercase font-bold tracking-tight text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-50-500 disabled:opacity-50"
-        >
+        <PrimarySubmitButton disabled={isSubmitting} size="formSubmit">
           {isSubmitting ? "Odesílání..." : "Odeslat poptávku"}
-        </button>
+        </PrimarySubmitButton>
       </form>
     </div>
   );

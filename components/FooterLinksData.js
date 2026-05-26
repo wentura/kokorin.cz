@@ -1,5 +1,13 @@
 export const footerLinksData = [
   {
+    name: "Přehled ubytování",
+    links: [
+      { name: "Ubytování Kokořínsko", link: "/ubytovani/kokorinsko", internal: true },
+      { name: "Glamping Kokořínsko", link: "/glamping/kokorinsko", internal: true },
+      { name: "Kempy Kokořínsko", link: "/kempy/kokorinsko", internal: true },
+    ],
+  },
+  {
     name: "Penziony",
     links: [
       { name: "Harasov", link: "https://www.harasov.eu/" },

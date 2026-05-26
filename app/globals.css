@@ -1,4 +1,15 @@
 @import "tailwindcss";
+
+/*
+  Brand UI (primární CTA + focus): sladěno s PrimaryCta.jsx
+  --color-brand: #1A6E6E  --color-focus-ring: #7DD3CF
+*/
+
+/* react-datepicker otevřený nad „pill“ lištou */
+.react-datepicker-brand {
+  z-index: 80 !important;
+}
+
 @layer animations {
   .animate-fadeIn {
     animation: fadeIn 0.5s ease-in-out;

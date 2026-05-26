@@ -104,69 +104,91 @@ export const viewport = {
   initialScale: 1,
 };
 
-const structuredData = {
+const structuredDataGraph = {
   "@context": "https://schema.org",
-  "@type": "TouristDestination",
-  name: "Kokořínsko",
-  description:
-    "Kraj pískovcových skal, hlubokých lesů a romantických hradů v České republice",
-  url: "https://kokorin.cz",
-  image:
-    "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "CZ",
-    addressRegion: "Středočeský kraj",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 50.4333,
-    longitude: 14.5667,
-  },
-  containsPlace: [
+  "@graph": [
     {
-      "@type": "TouristAttraction",
-      name: "Hrad Kokořín",
-      description: "Romantický hrad v srdci Kokořínska",
-    },
-  ],
-  amenityFeature: [
-    {
-      "@type": "LocationFeatureSpecification",
-      name: "Cyklostezky",
-      value: true,
+      "@type": "Organization",
+      "@id": "https://kokorin.cz/#organization",
+      name: "Kokořín.cz",
+      url: "https://kokorin.cz",
+      logo: "https://kokorin.cz/apple-touch-icon.png",
+      description:
+        "Portfolio ubytování na Kokořínsku – penziony, glamping a kempy s centrální poptávkou.",
+      sameAs: [],
     },
     {
-      "@type": "LocationFeatureSpecification",
-      name: "Turistické trasy",
-      value: true,
+      "@type": "WebSite",
+      "@id": "https://kokorin.cz/#website",
+      name: "Kokořín.cz",
+      url: "https://kokorin.cz",
+      inLanguage: "cs-CZ",
+      publisher: { "@id": "https://kokorin.cz/#organization" },
     },
     {
-      "@type": "LocationFeatureSpecification",
-      name: "Koupání",
-      value: true,
+      "@type": "TouristDestination",
+      "@id": "https://kokorin.cz/#destination",
+      name: "Kokořínsko",
+      description:
+        "Kraj pískovcových skal, hlubokých lesů a romantických hradů v České republice",
+      url: "https://kokorin.cz",
+      image:
+        "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "CZ",
+        addressRegion: "Středočeský kraj",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 50.4333,
+        longitude: 14.5667,
+      },
+      containsPlace: [
+        {
+          "@type": "TouristAttraction",
+          name: "Hrad Kokořín",
+          description: "Romantický hrad v srdci Kokořínska",
+        },
+      ],
+      amenityFeature: [
+        {
+          "@type": "LocationFeatureSpecification",
+          name: "Cyklostezky",
+          value: true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          name: "Turistické trasy",
+          value: true,
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          name: "Koupání",
+          value: true,
+        },
+      ],
     },
   ],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="cs" className={`${geist.variable} ${geistMono.variable}`}>
+    <html lang="cs" className={`${geist.variable} ${geistMono.variable} scroll-smooth`}>
       <head>
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://www.harasov.eu" />
         <link rel="dns-prefetch" href="https://malba-pracovni.netlify.app" />
         <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="apple-touch-icon"
-          href="https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262136/Kamil/W45A8096.webp"
-        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Kokořín.cz" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredDataGraph),
+          }}
         />
       </head>
       {/* <BookingForm /> */}

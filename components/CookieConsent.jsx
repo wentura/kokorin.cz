@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+
+const DEFAULT_CONSENT = {
+  necessary: true,
+  analytics: true,
+  marketing: true,
+};
 
 const getStorage = () => {
   if (typeof window === "undefined") {
@@ -20,27 +26,80 @@ const getStorage = () => {
   return null;
 };
 
-export default function CookieConsent() {
-  const [showConsent, setShowConsent] = useState(true); // Start with true to show in dev
-  const [showPreferences, setShowPreferences] = useState(false);
-  const [consent, setConsent] = useState({
-    necessary: true,
-    analytics: true,
-    marketing: true,
-  });
+function readConsentSnapshot() {
+  const storage = getStorage();
+  if (!storage) {
+    return { saved: null, showBanner: true };
+  }
 
-  useEffect(() => {
+  const raw = storage.getItem("cookieConsent");
+  if (!raw) {
+    return { saved: null, showBanner: true };
+  }
+
+  try {
+    return { saved: JSON.parse(raw), showBanner: false };
+  } catch {
+    return { saved: null, showBanner: true };
+  }
+}
+
+function subscribeToConsent(onStoreChange) {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const onStorage = (event) => {
+    if (event.key === "cookieConsent") {
+      onStoreChange();
+    }
+  };
+
+  const onConsentUpdated = () => onStoreChange();
+
+  window.addEventListener("storage", onStorage);
+  window.addEventListener("cookie-consent-updated", onConsentUpdated);
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener("cookie-consent-updated", onConsentUpdated);
+  };
+}
+
+function notifyConsentUpdated() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("cookie-consent-updated"));
+  }
+}
+
+function getServerConsentSnapshot() {
+  return { saved: null, showBanner: true };
+}
+
+export default function CookieConsent() {
+  const { saved, showBanner } = useSyncExternalStore(
+    subscribeToConsent,
+    readConsentSnapshot,
+    getServerConsentSnapshot,
+  );
+
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [consent, setConsent] = useState(saved ?? DEFAULT_CONSENT);
+
+  const persistConsent = (nextConsent) => {
     const storage = getStorage();
-    if (!storage) {
-      return;
+    if (storage) {
+      storage.setItem("cookieConsent", JSON.stringify(nextConsent));
     }
-    // Check if user has already made a choice
-    const savedConsent = storage.getItem("cookieConsent");
-    if (savedConsent) {
-      setConsent(JSON.parse(savedConsent));
-      setShowConsent(false);
+    notifyConsentUpdated();
+  };
+
+  const openPreferences = () => {
+    const snapshot = readConsentSnapshot();
+    if (snapshot.saved) {
+      setConsent(snapshot.saved);
     }
-  }, []);
+    setShowPreferences(true);
+  };
 
   const handleAcceptAll = () => {
     const newConsent = {
@@ -49,20 +108,13 @@ export default function CookieConsent() {
       marketing: true,
     };
     setConsent(newConsent);
-    const storage = getStorage();
-    if (storage) {
-      storage.setItem("cookieConsent", JSON.stringify(newConsent));
-    }
-    setShowConsent(false);
+    persistConsent(newConsent);
+    setShowPreferences(false);
   };
 
   const handleSavePreferences = () => {
-    const storage = getStorage();
-    if (storage) {
-      storage.setItem("cookieConsent", JSON.stringify(consent));
-    }
+    persistConsent(consent);
     setShowPreferences(false);
-    setShowConsent(false);
   };
 
   const handleRejectAll = () => {
@@ -72,19 +124,15 @@ export default function CookieConsent() {
       marketing: false,
     };
     setConsent(newConsent);
-    const storage = getStorage();
-    if (storage) {
-      storage.setItem("cookieConsent", JSON.stringify(newConsent));
-    }
-    setShowConsent(false);
+    persistConsent(newConsent);
+    setShowPreferences(false);
   };
 
-  // Don't render anything if both consent and preferences are hidden
-  if (!showConsent && !showPreferences) {
+  if (!showBanner && !showPreferences) {
     return (
       <div className="text-right bottom-1 right-1 z-50">
         <button
-          onClick={() => setShowPreferences(true)}
+          onClick={openPreferences}
           className="text-sm text-blue-600 underline hover:text-blue-800 transition-colors"
         >
           Nastavení cookies
@@ -178,7 +226,7 @@ export default function CookieConsent() {
                 Odmítnout vše
               </button>
               <button
-                onClick={() => setShowPreferences(true)}
+                onClick={openPreferences}
                 className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
               >
                 Nastavení

@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
+    "@supabase/supabase-js": "^2.101.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.16.0",
     "motion": "^12.16.0",
@@ -23,7 +25,6 @@
     "web-vitals": "^5.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "^16.1.6",

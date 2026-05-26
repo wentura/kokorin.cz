@@ -1,68 +1,232 @@
 import { Resend } from "resend";
+import { normalizeEmail } from "@/lib/emailSecurity";
+import { renderConfirmationEmail, renderLeadEmail } from "@/lib/emailTemplates";
+import { resolveLeadRouting } from "@/lib/leadRouting";
+import { persistAccommodationLead } from "@/lib/persistAccommodationLead";
+import { isAllowedBookingRecipientEmail } from "@/lib/portfolioObjects";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const formatCzDate = (value) => {
-  if (!value) return "";
-  // If a pre-formatted string was sent, keep it
-  if (typeof value === "string" && /\d{2}\.\d{2}\.\d{4}/.test(value)) {
-    return value;
+const isProd = process.env.NODE_ENV === "production";
+
+function jsonError(status, message, details) {
+  if (isProd) {
+    return Response.json({ error: message }, { status });
   }
-  const d = new Date(value);
-  if (isNaN(d.getTime())) return String(value);
-  return d.toLocaleDateString("cs-CZ", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
+  if (details != null) {
+    return Response.json({ error: message, details }, { status });
+  }
+  return Response.json({ error: message }, { status });
+}
+
+function normalizeRecipientList(to) {
+  if (to == null) return [];
+  if (Array.isArray(to)) {
+    return to.map((t) => (typeof t === "string" ? t.trim().toLowerCase() : "")).filter(Boolean);
+  }
+  if (typeof to === "string") {
+    const n = to.trim().toLowerCase();
+    return n ? [n] : [];
+  }
+  return [];
+}
+
+const LEGACY_ROUTING = {
+  routingMode: "direct_object",
+  routingReason: "legacy_contact_routing",
+  targetObjects: [],
 };
+
+async function sendUserConfirmationIfNeeded(name, userEmail, formData) {
+  const { data: emailData, error } = await resend.emails.send({
+    from: "Kokořín.cz <info@kokorin.cz>",
+    to: [userEmail],
+    subject: "Vaše poptávka ubytování na Kokořín.cz",
+    html: renderConfirmationEmail({
+      name,
+      dateFrom: formData?.dateFrom,
+      dateTo: formData?.dateTo,
+    }),
+  });
+  return { emailData, error };
+}
 
 export async function POST(request) {
   try {
-    const { to, subject, data } = await request.json();
+    const payload = await request.json();
+    const {
+      messageType = "legacy",
+      to,
+      subject,
+      data,
+      leadContext,
+      sendUserConfirmation,
+      adminTo,
+    } = payload;
+
+    if (messageType === "lead") {
+      const userEmail = normalizeEmail(data?.email);
+      if (!userEmail) {
+        return jsonError(400, "Neplatný e-mail", { field: "email" });
+      }
+
+      const routing = resolveLeadRouting({ leadContext, formData: data });
+      const recipients = [...new Set(routing.targetEmails.filter(Boolean))];
+      const computedSubject =
+        routing.routingMode === "direct_object"
+          ? `Nová přímá poptávka z Kokořín.cz: ${data.sourceObjectName || data.accommodation || "objekt"}`
+          : "Nová centrální poptávka z Kokořín.cz";
+
+      const { data: emailData, error } = await resend.emails.send({
+        from: "Kokořín.cz <info@kokorin.cz>",
+        to: recipients,
+        subject: computedSubject,
+        html: renderLeadEmail({ data, leadContext, routing }),
+      });
+
+      if (error) {
+        return jsonError(400, "Odeslání e-mailu se nezdařilo", error);
+      }
+
+      const shouldConfirm = sendUserConfirmation !== false;
+      if (shouldConfirm) {
+        const confirm = await sendUserConfirmationIfNeeded(
+          data.name,
+          userEmail,
+          data,
+        );
+        if (confirm.error) {
+          return jsonError(400, "Potvrzovací e-mail se nepodařilo odeslat", confirm.error);
+        }
+      }
+
+      const persisted = await persistAccommodationLead({
+        siteSlug: "kokorin",
+        data,
+        leadContext,
+        routing,
+      });
+      if (!persisted.ok) {
+        console.error("[send-email] accommodation_leads persist failed", persisted.error);
+      }
+
+      return Response.json({
+        success: true,
+        data: emailData,
+        routing,
+        persisted: persisted.ok,
+      });
+    }
+
+    if (messageType === "legacyPair") {
+      const admin = typeof adminTo === "string" ? adminTo.trim().toLowerCase() : "";
+      if (!admin || !isAllowedBookingRecipientEmail(admin)) {
+        return jsonError(403, "Nepovolený příjemce", { adminTo });
+      }
+      const userEmail = normalizeEmail(data?.email);
+      if (!userEmail) {
+        return jsonError(400, "Neplatný e-mail", { field: "email" });
+      }
+
+      const routing = {
+        ...LEGACY_ROUTING,
+        targetEmails: [admin],
+      };
+
+      const { data: adminMail, error: errAdmin } = await resend.emails.send({
+        from: "Kokořín.cz <info@kokorin.cz>",
+        to: [admin],
+        subject: "Nová poptávka ubytování z Kokořín.cz",
+        html: renderLeadEmail({
+          data: {
+            ...data,
+            children: data.infants ?? 0,
+            source: "legacy",
+            sourcePage: "legacy",
+            sourceSection: "legacy",
+            stayType: "legacy",
+            travelIntent: "legacy",
+            wantsRecommendation: false,
+            flexibleDates: false,
+            pets: false,
+            budgetRange: "",
+          },
+          leadContext: {},
+          routing,
+        }),
+      });
+
+      if (errAdmin) {
+        return jsonError(400, "Odeslání e-mailu se nezdařilo", errAdmin);
+      }
+
+      const confirm = await sendUserConfirmationIfNeeded(
+        data.name,
+        userEmail,
+        data,
+      );
+      if (confirm.error) {
+        return jsonError(400, "Potvrzovací e-mail se nepodařilo odeslat", confirm.error);
+      }
+
+      return Response.json({
+        success: true,
+        data: adminMail,
+        routing,
+      });
+    }
+
+    const list = normalizeRecipientList(to);
+    if (list.length === 0 || !list.every(isAllowedBookingRecipientEmail)) {
+      return jsonError(403, "Nepovolený příjemce", null);
+    }
+
+    if (subject !== "Nová poptávka ubytování z Kokořín.cz") {
+      return jsonError(
+        400,
+        "Neplatný typ požadavku. Použijte messageType lead nebo legacyPair.",
+        { subject },
+      );
+    }
+
+    const routing = {
+      ...LEGACY_ROUTING,
+      targetEmails: list,
+    };
 
     const { data: emailData, error } = await resend.emails.send({
       from: "Kokořín.cz <info@kokorin.cz>",
-      to: [to],
-      subject: subject,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2>Nová poptávka na Kokořín.cz</h2>
-          ${
-            subject === "Nová poptávka ubytování z Kokořín.cz"
-              ? `
-            <p><strong>Poptávka ubytování:</strong> ${data.accommodation}</p>
-            <br />
-            <p><strong>Jméno:</strong> ${data.name}</p>
-            <p><strong>E-mail:</strong> ${data.email}</p>
-            <p><strong>Od:</strong> ${formatCzDate(data.dateFrom)}</p>
-            <p><strong>Do:</strong> ${formatCzDate(data.dateTo)}</p>
-            <p><strong>Počet dospělých:</strong> ${data.adults}</p>
-            <p><strong>Počet dětí (3-10 let):</strong> ${data.infants}</p>
-            ${
-              data.notes
-                ? `
-            <p><strong>Poznámka k poptávce:</strong></p>
-            <p style="white-space: pre-wrap; background-color: #f9fafb; padding: 10px; border-radius: 4px;">${data.notes}</p>
-            `
-                : ""
-            }
-          `
-              : `
-            <p>Dobrý den ${data.name},</p>
-            <p>${data.message}</p>
-          `
-          }
-        </div>
-      `,
+      to: list,
+      subject,
+      html: renderLeadEmail({
+        data: {
+          ...data,
+          children: data.infants ?? 0,
+          source: "legacy",
+          sourcePage: "legacy",
+          sourceSection: "legacy",
+          stayType: "legacy",
+          travelIntent: "legacy",
+          wantsRecommendation: false,
+          flexibleDates: false,
+          pets: false,
+          budgetRange: "",
+        },
+        leadContext: {},
+        routing,
+      }),
     });
 
     if (error) {
-      return Response.json({ error }, { status: 400 });
+      return jsonError(400, "Odeslání e-mailu se nezdařilo", error);
     }
 
-    return Response.json({ success: true, data: emailData });
+    return Response.json({ success: true, data: emailData, routing });
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    const msg =
+      error && typeof error === "object" && "message" in error
+        ? String(error.message)
+        : String(error);
+    return jsonError(500, isProd ? "Interní chyba serveru" : msg, !isProd ? error : undefined);
   }
 }

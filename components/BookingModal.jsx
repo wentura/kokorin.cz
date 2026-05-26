@@ -8,9 +8,13 @@ import BookingForm from "./booking";
 export default function BookingModal({
   isOpen,
   onClose,
-  accommodation,
-  contact,
+  leadContext,
+  prefill,
 }) {
+  const title = leadContext?.sourceObjectName
+    ? `Poptávka ubytování\n${leadContext.sourceObjectName}`
+    : "Centrální poptávka ubytování";
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -48,14 +52,22 @@ export default function BookingModal({
                     as="h3"
                     className="text-2xl font-bold leading-6 text-gray-900 mb-4 text-center"
                   >
-                    Poptávka ubytování
-                    <br /> {accommodation}
+                    {title.split("\n").map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
                   </Dialog.Title>
-                  <div className="mt-2">
+                  <div className="mt-2 max-h-[min(80vh,900px)] overflow-y-auto pr-1">
                     <BookingForm
+                      key={
+                        isOpen
+                          ? `${leadContext?.sourceObjectId ?? "generic"}-${prefill?.dateFrom instanceof Date ? prefill.dateFrom.getTime() : "nd"}`
+                          : "closed"
+                      }
                       onSuccess={onClose}
-                      accommodation={accommodation}
-                      contact={contact}
+                      leadContext={leadContext}
+                      prefill={prefill}
                     />
                   </div>
                 </Dialog.Panel>

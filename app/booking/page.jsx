@@ -1,9 +1,10 @@
 import BookingPageClient from "@/components/BookingPageClient";
+import Matomo from "@/components/Matomo";
 
 export const metadata = {
   title: "Poptávka ubytování – Kokořín",
   description:
-    "Jednoduchý poptávkový formulář pro ubytování na Kokořínsku. Vyplňte termín, počet osob a preferovaný typ ubytování.",
+    "Centrální poptávka ubytování pro portfolio Kokořín.cz. Vyplňte termín, počet osob a typ pobytu a my doporučíme vhodný objekt nebo shortlist variant.",
   alternates: {
     canonical: "/booking",
   },
@@ -18,12 +19,15 @@ export default function BookingPage() {
             Poptávka ubytování na Kokořínsku
           </h1>
           <p className="mt-3 text-gray-700 md:text-lg">
-            Vyplňte prosím několik základních údajů o vašem pobytu. Ozveme se
-            vám zpět s nabídkou konkrétního ubytování.
+            Vyplňte několik základních údajů o pobytu. Pokud ještě nemáte
+            vybraný konkrétní objekt, Kokořín.cz funguje jako centrální
+            kvalifikační vrstva a doporučí vhodný objekt nebo shortlist
+            variant z celého portfolia.
           </p>
         </section>
 
         <BookingPageClient />
+        <Matomo />
 
         <p className="mt-6 text-xs text-gray-500 text-center">
           Odesláním formuláře souhlasíte se zpracováním osobních údajů pro účely

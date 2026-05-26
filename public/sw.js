@@ -1,7 +1,6 @@
-const CACHE_NAME = "kokorin-cache-v1";
+const CACHE_NAME = "kokorin-cache-v2";
 const urlsToCache = [
   "/",
-  "/globals.css",
   "https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap",
   "https://res.cloudinary.com/dam7wdzvx/image/upload/v1747262134/Kamil/vW45A8151.webp",
   "https://www.harasov.eu/gallery/titulka_a_tiny.jpg",

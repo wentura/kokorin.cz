@@ -59,7 +59,7 @@ export default function HoverPanel({ title, image, href, position }) {
           >
             <motion.h2
               className={clsx(
-                "text-white text-3xl md:text-4xl font-extrabold md:font-extralight text-center p-4 uppercase tracking-tight",
+                "text-white text-3xl md:text-4xl lg:text-5xl font-extrabold md:font-extralight text-center p-4 uppercase tracking-tight",
                 isHovered
                   ? "md:scale-110 md:font-bold"
                   : "md:scale-90 md:opacity-0",

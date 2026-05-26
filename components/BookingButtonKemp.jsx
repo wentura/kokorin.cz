@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PrimaryButton } from "@/components/PrimaryCta";
 import BookingModalKemp from "./BookingModalKemp";
 
 export default function BookingButton({ accommodation, contact }) {
@@ -8,12 +9,9 @@ export default function BookingButton({ accommodation, contact }) {
 
   return (
     <div className="w-full flex justify-center md:justify-end mt-0">
-      <button
-        onClick={() => setIsOpen(true)}
-        className="text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 px-4 py-2 rounded-md shadow-sm text-sm md:text-base 2xl:text-lg font-bold uppercase tracking-tight"
-      >
+      <PrimaryButton onClick={() => setIsOpen(true)}>
         Poptávka ubytování
-      </button>
+      </PrimaryButton>
       <BookingModalKemp
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

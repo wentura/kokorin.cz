@@ -1,5 +1,7 @@
 import React from "react";
 import { footerLinksData } from "./FooterLinksData";
+import TrackedExternalAnchor from "./TrackedExternalAnchor";
+import TrackedInternalLink from "./TrackedInternalLink";
 export default function FooterLinks() {
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 my-8 md:my-24 2xl:my-44">
@@ -14,15 +16,27 @@ export default function FooterLinks() {
                 {link.name}
               </span>
               <ul>
-                {link.links.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.link}
-                      target="_blank"
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      {link.name}
-                    </a>
+                {link.links.map((item) => (
+                  <li key={item.name}>
+                    {item.internal ? (
+                      <TrackedInternalLink
+                        href={item.link}
+                        source="footer-links"
+                        name={item.name}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        {item.name}
+                      </TrackedInternalLink>
+                    ) : (
+                      <TrackedExternalAnchor
+                        href={item.link}
+                        section="footer-links"
+                        objectName={item.name}
+                        className="text-gray-500 hover:text-gray-700"
+                      >
+                        {item.name}
+                      </TrackedExternalAnchor>
+                    )}
                   </li>
                 ))}
               </ul>
