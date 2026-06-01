@@ -4,7 +4,7 @@ import { trackBookingModalOpen } from "@/lib/analytics";
 import { trackInternalCtaClick } from "@/lib/analytics";
 import { createLeadContext } from "@/lib/leadOptions";
 import { filterPortfolioObjects } from "@/lib/portfolioObjects";
-import { PrimaryLink } from "@/components/PrimaryCta";
+import { PrimaryButton } from "@/components/PrimaryCta";
 import { cs } from "date-fns/locale";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -54,6 +54,12 @@ function formatPetsOption(n) {
   return `${n} mazlíčků`;
 }
 
+function deriveStayType(categoriesForFilter, objectCategory) {
+  if (objectCategory) return objectCategory;
+  if (categoriesForFilter.length === 1) return categoriesForFilter[0];
+  return "nevim_potrebuji_poradit";
+}
+
 export default function AccommodationSearchSection() {
   const [dateFrom, setDateFrom] = useState(null);
   const [dateTo, setDateTo] = useState(null);
@@ -68,6 +74,7 @@ export default function AccommodationSearchSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLeadContext, setModalLeadContext] = useState(null);
   const [modalPrefill, setModalPrefill] = useState(null);
+  const [modalFormKey, setModalFormKey] = useState(0);
   const [activeScenario, setActiveScenario] = useState("");
 
   const categoriesForFilter = useMemo(() => {
@@ -110,7 +117,21 @@ export default function AccommodationSearchSection() {
     trackInternalCtaClick(`scenario_${scenario.key}`, "homepage-search");
   };
 
-  const openBooking = (object) => {
+  const buildSearchPrefill = (stayType) => ({
+    dateFrom: dateFrom || undefined,
+    dateTo: dateTo || undefined,
+    adults,
+    children: children310,
+    pets,
+    stayType,
+  });
+
+  const openBookingModal = ({ object = null, wantsRecommendation = false }) => {
+    const stayType = deriveStayType(
+      categoriesForFilter,
+      object?.category,
+    );
+
     setModalLeadContext(
       createLeadContext({
         source: "homepage-search",
@@ -120,16 +141,21 @@ export default function AccommodationSearchSection() {
       }),
     );
     setModalPrefill({
-      dateFrom: dateFrom || undefined,
-      dateTo: dateTo || undefined,
-      adults,
-      children: children310,
-      pets,
-      stayType: object.category,
-      wantsRecommendation: false,
+      ...buildSearchPrefill(stayType),
+      wantsRecommendation,
     });
+    setModalFormKey((k) => k + 1);
     trackBookingModalOpen("homepage-search");
     setModalOpen(true);
+  };
+
+  const openBooking = (object) => {
+    openBookingModal({ object, wantsRecommendation: false });
+  };
+
+  const openCentralBooking = () => {
+    trackInternalCtaClick("booking_from_filter", "homepage-search");
+    openBookingModal({ wantsRecommendation: true });
   };
 
   const adultsOptions = useMemo(
@@ -329,18 +355,17 @@ export default function AccommodationSearchSection() {
         </div>
 
         <div className="border-t border-gray-200">
-          <PrimaryLink
-            href="/booking"
+          <PrimaryButton
+            type="button"
             size="pillEnd"
-            trackingName="booking_from_filter"
-            trackingSource="homepage-search"
+            onClick={openCentralBooking}
             className="!rounded-none !w-full !text-white !bg-[#1A6E6E] hover:!bg-[#155858]"
           >
             <span className="leading-tight text-center">
               Poslat poptávku
               <span className="inline"> ubytování</span>
             </span>
-          </PrimaryLink>
+          </PrimaryButton>
         </div>
       </div>
 
@@ -388,6 +413,7 @@ export default function AccommodationSearchSection() {
         onClose={() => setModalOpen(false)}
         leadContext={modalLeadContext}
         prefill={modalPrefill}
+        formKey={modalFormKey}
       />
     </section>
   );

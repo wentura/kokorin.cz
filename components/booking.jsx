@@ -1,6 +1,7 @@
 "use client";
 
 import { trackLeadSubmit } from "@/lib/analytics";
+import { formatCzDate } from "@/lib/formatCzDate";
 import { stayTypeOptions, travelIntentOptions } from "@/lib/leadOptions";
 import { cs } from "date-fns/locale";
 import { useState } from "react";
@@ -36,15 +37,6 @@ export default function BookingForm({ onSuccess, leadContext, prefill }) {
   const wantsRecommendation = watch("wantsRecommendation");
   const sourceObjectName = leadContext?.sourceObjectName;
   const sourceObjectId = leadContext?.sourceObjectId;
-
-  const formatCzDate = (d) =>
-    d
-      ? new Date(d).toLocaleDateString("cs-CZ", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        })
-      : "";
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);

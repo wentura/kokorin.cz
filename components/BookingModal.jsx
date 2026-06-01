@@ -10,6 +10,7 @@ export default function BookingModal({
   onClose,
   leadContext,
   prefill,
+  formKey = 0,
 }) {
   const title = leadContext?.sourceObjectName
     ? `Poptávka ubytování\n${leadContext.sourceObjectName}`
@@ -62,7 +63,7 @@ export default function BookingModal({
                     <BookingForm
                       key={
                         isOpen
-                          ? `${leadContext?.sourceObjectId ?? "generic"}-${prefill?.dateFrom instanceof Date ? prefill.dateFrom.getTime() : "nd"}`
+                          ? `${leadContext?.sourceObjectId ?? "generic"}-${formKey}`
                           : "closed"
                       }
                       onSuccess={onClose}

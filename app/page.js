@@ -249,10 +249,10 @@ export default function Page() {
             .
           </p>
           <p className="text-gray-800 text-2xl md:text-4xl font-bold tracking-tight pt-4 text-right">
-            Vyberte místo, pošlete poptávku, provozovatel potvrdí termín.
+            Dovolená v Čechách nemusí znamenat dlouhé cestování.
           </p>
           <p className="text-gray-800 text-lg md:text-xl leading-relaxed pt-4">
-            Dovolená v Čechách nemusí znamenat dlouhé cestování.<br />Kokořínsko je
+            Kokořínsko je
             jedna z nejkrásnějších přírodních oblastí Středočeského kraje:
             romantický hrad Kokořín, pískovcové Pokličky, údolí a rybníky lákají
             k pěším i cyklistickým výletům. Ubytování zde najdete v různých

@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { normalizeEmail } from "@/lib/emailSecurity";
 import { renderConfirmationEmail, renderLeadEmail } from "@/lib/emailTemplates";
+import { formatCzDate } from "@/lib/formatCzDate";
 import { resolveLeadRouting } from "@/lib/leadRouting";
 import { persistAccommodationLead } from "@/lib/persistAccommodationLead";
 import { isAllowedBookingRecipientEmail } from "@/lib/portfolioObjects";
@@ -44,8 +45,8 @@ async function sendUserConfirmationIfNeeded(name, userEmail, formData) {
     subject: "Vaše poptávka ubytování na Kokořín.cz",
     html: renderConfirmationEmail({
       name,
-      dateFrom: formData?.dateFrom,
-      dateTo: formData?.dateTo,
+      dateFrom: formatCzDate(formData?.dateFrom),
+      dateTo: formatCzDate(formData?.dateTo),
     }),
   });
   return { emailData, error };
