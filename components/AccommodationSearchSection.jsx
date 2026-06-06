@@ -225,7 +225,7 @@ export default function AccommodationSearchSection() {
               dateFormat="dd.MM.yyyy"
               locale={cs}
               calendarStartDay={1}
-              placeholderText="dd.mm.yyyy"
+              placeholderText="dd.mm.rrrr"
               showPopperArrow={false}
               isClearable
               popperClassName="react-datepicker-brand z-[80]"
@@ -251,7 +251,7 @@ export default function AccommodationSearchSection() {
               dateFormat="dd.MM.yyyy"
               locale={cs}
               calendarStartDay={1}
-              placeholderText="dd.mm.yyyy"
+              placeholderText="dd.mm.rrrr"
               showPopperArrow={false}
               isClearable
               popperClassName="react-datepicker-brand z-[80]"

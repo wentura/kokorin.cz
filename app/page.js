@@ -173,7 +173,7 @@ export default function Page() {
                 poptávku, potvrzení termínu vždy řeší provozovatel.
               </p> */}
             </div>
-            <div className="w-full flex flex-col sm:flex-row justify-center md:justify-end gap-2 mt-4 md:mt-0">
+            <div className="w-full flex flex-col sm:flex-row justify-center md:justify-end gap-2 mt-4 md:mt-0 hidden lg:flex">
               <PrimaryLink
                 href="#ubytovani-filtr"
                 trackingName="find_accommodation"
