@@ -63,7 +63,7 @@ export default function BookingForm({ onSuccess, accommodation, contact }) {
         source: "kemp-box",
       });
       toast.error(
-        "Nepodařilo se odeslat poptávku. Prosím zkuste to znovu a nebo nám napište na info@kokorin.cz",
+        "Nepodařilo se odeslat poptávku. Prosím zkuste to znovu a nebo nám napište na info@harasov.eu",
       );
       console.error("Error:", error);
     } finally {
