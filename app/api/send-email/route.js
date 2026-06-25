@@ -40,7 +40,7 @@ const LEGACY_ROUTING = {
 
 async function sendUserConfirmationIfNeeded(name, userEmail, formData) {
   const { data: emailData, error } = await resend.emails.send({
-    from: "Harasov.eu <info@harasov.eu>",
+    from: "Kokořín.cz <kamil@kokorin.cz>",
     to: [userEmail],
     subject: "Vaše poptávka ubytování na Kokořín.cz",
     html: renderConfirmationEmail({
@@ -79,7 +79,7 @@ export async function POST(request) {
           : "Nová centrální poptávka z Kokořín.cz";
 
       const { data: emailData, error } = await resend.emails.send({
-        from: "Harasov.eu <info@harasov.eu>",
+        from: "Kokořín.cz <kamil@kokorin.cz>",
         to: recipients,
         subject: computedSubject,
         html: renderLeadEmail({ data, leadContext, routing }),
@@ -135,7 +135,7 @@ export async function POST(request) {
       };
 
       const { data: adminMail, error: errAdmin } = await resend.emails.send({
-        from: "Harasov.eu <info@harasov.eu>",
+        from: "Kokořín.cz <kamil@kokorin.cz>",
         to: [admin],
         subject: "Nová poptávka ubytování z Kokořín.cz",
         html: renderLeadEmail({
@@ -196,7 +196,7 @@ export async function POST(request) {
     };
 
     const { data: emailData, error } = await resend.emails.send({
-      from: "Harasov.eu <info@harasov.eu>",
+      from: "Kokořín.cz <kamil@kokorin.cz>",
       to: list,
       subject,
       html: renderLeadEmail({
