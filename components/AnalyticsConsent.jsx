@@ -4,22 +4,38 @@ import { Suspense, useEffect, useState, useSyncExternalStore } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const measurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
-const consentKey = "kamil_ga4_analytics_consent_v1";
+const consentKey = "kamil_ga4_analytics_consent_v2";
 const validId = /^G-[A-Z0-9]+$/.test(measurementId || "");
 let volatileChoice = null;
 
+function validChoice(value) {
+  try {
+    const saved = typeof value === "string" ? JSON.parse(value) : value;
+    return (saved?.choice === "granted" || saved?.choice === "denied") &&
+      Number.isFinite(saved.expiresAt) && saved.expiresAt > Date.now()
+      ? saved.choice
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 function readChoice() {
   try {
-    return window.localStorage.getItem(consentKey);
+    return validChoice(window.localStorage.getItem(consentKey));
   } catch {
-    return volatileChoice;
+    return validChoice(volatileChoice);
   }
 }
 
 function saveChoice(choice) {
-  volatileChoice = choice;
+  const expires = new Date();
+  if (choice === "granted") expires.setFullYear(expires.getFullYear() + 1);
+  else expires.setMonth(expires.getMonth() + 6);
+  volatileChoice = { choice, expiresAt: expires.getTime() };
   try {
-    window.localStorage.setItem(consentKey, choice);
+    window.localStorage.setItem(consentKey, JSON.stringify(volatileChoice));
+    window.localStorage.removeItem("kamil_ga4_analytics_consent_v1");
   } catch {
     // A blocked storage API must not prevent the visitor from making a choice.
   }
@@ -132,7 +148,7 @@ export default function AnalyticsConsent() {
           className="fixed inset-x-3 bottom-3 z-[9999] mx-auto max-w-xl rounded-xl border border-neutral-200 bg-white p-4 text-sm text-neutral-900 shadow-lg sm:p-5"
         >
           <p className="mb-3 leading-relaxed">
-            Pomozte nám zjistit, jak lidé web používají. Google Analytics spustíme jen s vaším souhlasem.
+            S vaším souhlasem používáme Google Analytics, abychom věděli, jak lidé naše stránky používají a co můžeme zlepšit. Bez souhlasu měření nespustíme. Volbu můžete kdykoli změnit v Nastavení cookies. <a href="/informace-o-cookies" className="underline underline-offset-2">Více o cookies</a>
           </p>
           <div className="flex flex-wrap gap-2">
             <button
@@ -147,7 +163,7 @@ export default function AnalyticsConsent() {
               onClick={() => choose("granted")}
               className="rounded-lg border border-neutral-900 bg-neutral-900 px-4 py-2 font-medium text-white hover:bg-neutral-700 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
-              Přijmout analytiku
+              Povolit analytiku
             </button>
             {choice !== null && (
               <button type="button" onClick={() => setSettingsOpen(false)} className="px-2 py-2 underline">
@@ -157,10 +173,11 @@ export default function AnalyticsConsent() {
           </div>
         </section>
       ) : ready ? (
-        <div className="mx-auto max-w-7xl px-4 py-3 text-xs text-neutral-700">
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-4 py-3 text-xs text-neutral-700">
           <button type="button" onClick={() => setSettingsOpen(true)} className="underline underline-offset-2">
             Nastavení cookies
           </button>
+          <a href="/informace-o-cookies" className="underline underline-offset-2">Informace o cookies</a>
         </div>
       ) : null}
     </>
