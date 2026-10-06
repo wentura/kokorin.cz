@@ -64,14 +64,8 @@ export default function PerformanceMonitor() {
             total: perfData.loadEventEnd - perfData.fetchStart,
           };
 
-          // Send to analytics if available
-          if (window._paq) {
-            window._paq.push([
-              "trackEvent",
-              "Performance",
-              "Metrics",
-              JSON.stringify(metrics),
-            ]);
+          if (window.__kamilAnalyticsConsent && window.gtag) {
+            window.gtag("event", "web_vitals", metrics);
           }
 
           console.log("Performance metrics:", metrics);

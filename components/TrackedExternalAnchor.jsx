@@ -3,7 +3,7 @@
 import { trackExternalObjectClick } from "@/lib/analytics";
 
 /**
- * Externí odkaz na web objektu s měřením kliku (Matomo).
+ * Externí odkaz na web objektu s měřením kliku (GA4).
  */
 export default function TrackedExternalAnchor({
   href,

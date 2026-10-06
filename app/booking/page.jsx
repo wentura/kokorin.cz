@@ -1,5 +1,4 @@
 import BookingPageClient from "@/components/BookingPageClient";
-import Matomo from "@/components/Matomo";
 
 export const metadata = {
   title: "Poptávka ubytování – Kokořín",
@@ -27,7 +26,7 @@ export default function BookingPage() {
         </section>
 
         <BookingPageClient />
-        <Matomo />
+
 
         <p className="mt-6 text-xs text-gray-500 text-center">
           Odesláním formuláře souhlasíte se zpracováním osobních údajů pro účely

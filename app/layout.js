@@ -1,4 +1,4 @@
-// import CookieConsent from "@/components/CookieConsent";
+import AnalyticsConsent from "@/components/AnalyticsConsent";
 // import PerformanceMonitor from "@/components/PerformanceMonitor";
 // import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 // import BookingForm from "@/components/booking";
@@ -196,8 +196,7 @@ export default function RootLayout({ children }) {
         {/* <PerformanceOptimizer /> */}
         {/* <PerformanceMonitor /> */}
         {children}
-        {/* Cookie lišta pro marketingové/ads cookies */}
-        {/* <CookieConsent /> */}
+        <AnalyticsConsent />
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import FooterLinks from "@/components/FooterLinks";
-import Matomo from "@/components/Matomo";
 import { PrimaryLink } from "@/components/PrimaryCta";
 import Link from "next/link";
 
@@ -213,7 +212,7 @@ export default function UbytovaniKokorinskoPage() {
       </article>
       <FooterLinks />
       <Footer />
-      <Matomo />
+
     </main>
   );
 }

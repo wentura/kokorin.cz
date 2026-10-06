@@ -5,7 +5,6 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import FooterLinks from "@/components/FooterLinks";
 import dynamic from "next/dynamic";
-import Matomo from "@/components/Matomo";
 const Hero = dynamic(() => import("@/components/Hero"), {
   ssr: true,
   loading: () => (
@@ -386,7 +385,6 @@ export default function Page() {
         </section> */}
         <FooterLinks />
         <Footer />
-        <Matomo />
         <StickyBookingButton />
       </main>
     </>
